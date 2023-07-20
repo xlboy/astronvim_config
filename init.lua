@@ -35,6 +35,15 @@ return {
       },
       timeout_ms = 1000, -- default format timeout
     },
+    config = {
+      emmet_ls = function(opts)
+        opts.filetypes = { "html", "css", "javascript", "jsx", "typescript", "tsx" }
+        opts.settings = {
+          css_filetypes = { "css", "javascript", "jsx", "typescript", "tsx" },
+        }
+        return opts
+      end,
+    },
   },
 
   -- Configure require("lazy").setup() options
