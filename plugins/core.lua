@@ -66,6 +66,12 @@ return {
     },
   },
   {
+    "s1n7ax/nvim-window-picker",
+    opts = {
+      hint = "floating-big-letter",
+    },
+  },
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-emoji",
