@@ -21,8 +21,33 @@ local function apply_gradient_hl(text)
   return lines
 end
 
+local function getGreeting()
+  local tableTime = os.date "*t"
+  local datetime = os.date " %Y-%m-%d   %H:%M "
+  local hour = tableTime.hour
+  local greetingsTable = {
+    [1] = "  Sleep well",
+    [2] = "  Good morning",
+    [3] = "  Good afternoon",
+    [4] = "  Good evening",
+    [5] = "󰖔  Good night",
+  }
+  local greetingIndex = 0
+  if hour == 23 or hour < 7 then
+    greetingIndex = 1
+  elseif hour < 12 then
+    greetingIndex = 2
+  elseif hour >= 12 and hour < 18 then
+    greetingIndex = 3
+  elseif hour >= 18 and hour < 21 then
+    greetingIndex = 4
+  elseif hour >= 21 then
+    greetingIndex = 5
+  end
+  return "\t" .. datetime .. "\t" .. greetingsTable[greetingIndex]
+end
+
 return {
-  -- customize alpha options
   {
     "goolord/alpha-nvim",
     opts = function(_, opts)
@@ -41,6 +66,7 @@ return {
         [[⠛⠛⠛⠛⠛⠛⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛]],
         [[⠀⠀⠀⠀⠀⠀⠘⠛⠻⢿⣿⣿⣿⣿⣿⠟⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ]],
         [[⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ]],
+        getGreeting(),
       }
       opts.section.header.type = "group"
       opts.section.header.val = apply_gradient_hl(logo)
@@ -73,7 +99,7 @@ return {
     end,
   },
   {
-    "telescope.nvim",
+    "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
@@ -85,5 +111,25 @@ return {
     opts = {
       current_line_blame = true,
     },
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-emoji",
+    },
+    opts = function(_, opts)
+      local cmp = require "cmp"
+      opts.completion = {
+        completeopt = "menu,menuone,noinsert",
+      }
+      opts.sources = cmp.config.sources {
+        { name = "nvim_lsp", priority = 1000 },
+        { name = "luasnip", priority = 750 },
+        { name = "buffer", priority = 500 },
+        { name = "path", priority = 250 },
+        { name = "emoji", priority = 700 },
+      }
+      return opts
+    end,
   },
 }
