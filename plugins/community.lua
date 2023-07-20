@@ -1,6 +1,7 @@
 return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.motion.leap-nvim" },
+  { import = "astrocommunity.motion.flit-nvim" },
   { import = "astrocommunity.colorscheme.tokyonight-nvim" },
   { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
   { import = "astrocommunity.project.nvim-spectre" },

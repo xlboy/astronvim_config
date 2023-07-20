@@ -45,4 +45,12 @@ return {
       vim.g["codegpt_chat_completions_url"] = "https://api.openai-sb.com/v1/chat/completions"
     end,
   },
+  {
+    "petertriho/nvim-scrollbar",
+    opts = {
+      handlers = {
+        cursor = false,
+      },
+    },
+  },
 }
