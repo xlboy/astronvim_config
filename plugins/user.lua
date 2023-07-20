@@ -1,10 +1,5 @@
 return {
   {
-    "folke/tokyonight.nvim",
-    lazy = true,
-    opts = { style = "moon" },
-  },
-  {
     "mg979/vim-visual-multi",
     keys = {
       { "<C-n>", mode = { "n", "x" } },

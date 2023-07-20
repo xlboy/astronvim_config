@@ -27,49 +27,14 @@ return {
   },
 
   lsp = {
-    setup_handlers = {
-      -- add custom handler
-      tsserver = function(_, opts) require("typescript").setup { server = opts } end,
-      denols = function(_, opts) require("deno-nvim").setup { server = opts } end,
-    },
-    config = {
-      denols = function(opts)
-        opts.root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
-        return opts
-      end,
-      tsserver = function(opts)
-        opts.root_dir = require("lspconfig.util").root_pattern "package.json"
-        return opts
-      end,
-      eslint = function(opts)
-        opts.root_dir = require("lspconfig.util").root_pattern("package.json", ".eslintrc.json", ".eslintrc.js")
-        return opts
-      end,
-    },
     formatting = {
       -- control auto formatting on save
-      format_on_save = {
-        enabled = true, -- enable or disable format on save globally
-        allow_filetypes = { -- enable format on save for specified filetypes only
-          -- "go",
-        },
-        ignore_filetypes = { -- disable format on save for specified filetypes
-          -- "python",
-        },
-      },
+      format_on_save = {},
       disabled = { -- disable formatting capabilities for the listed language servers
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
         -- "lua_ls",
       },
       timeout_ms = 1000, -- default format timeout
-      filter = function(client) -- fully override the default formatting function
-        if vim.bo.filetype == "markdown" then return client.name == "prettier" end
-        return true
-      end,
-    },
-    -- enable servers that you already have installed without mason
-    servers = {
-      "pyright",
     },
   },
 
