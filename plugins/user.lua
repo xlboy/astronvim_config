@@ -1,11 +1,5 @@
 return {
   {
-    "mg979/vim-visual-multi",
-    keys = {
-      { "<C-n>", mode = { "n", "x" } },
-    },
-  },
-  {
     "andrewferrier/debugprint.nvim",
     keys = {
       { "g?p", desc = "Print debug info" },
@@ -65,7 +59,7 @@ return {
   {
     "echasnovski/mini.surround",
     keys = {
-      { "gza", desc = "Add surrounding",                     mode = { "n", "v" } },
+      { "gza", desc = "Add surrounding", mode = { "n", "v" } },
       { "gzd", desc = "Delete surrounding" },
       { "gzf", desc = "Find right surrounding" },
       { "gzF", desc = "Find left surrounding" },
@@ -83,6 +77,12 @@ return {
         replace = "gzr",
         update_n_lines = "gzn",
       },
+    },
+  },
+  {
+    "debugloop/telescope-undo.nvim",
+    keys = {
+      { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Find undo" },
     },
   },
 }
