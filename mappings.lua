@@ -42,8 +42,6 @@ return {
       function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
       desc = "Previous tab",
     },
-    ["<M-j>"] = { "<cmd> m+ <cr>", desc = "movel line down" },
-    ["<M-k>"] = { "<cmd> m-2 <cr>", desc = "movel line up" },
   },
   i = {
     ["<C-h>"] = { "<left>", desc = "left" },
