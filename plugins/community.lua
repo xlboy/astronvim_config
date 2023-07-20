@@ -7,7 +7,6 @@ return {
   { import = "astrocommunity.project.project-nvim" },
   { import = "astrocommunity.scrolling.nvim-scrollbar" },
   { import = "astrocommunity.media.pets-nvim" },
-  { import = "astrocommunity.editing-support.auto-save-nvim" },
   { import = "astrocommunity.editing-support.nvim-regexplainer" },
   { import = "astrocommunity.editing-support.todo-comments-nvim" },
   { import = "astrocommunity.editing-support.true-zen-nvim" },
