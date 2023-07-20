@@ -50,10 +50,12 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
+      "nvim-lua/popup.nvim",
+      "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-media-files.nvim",
     },
     config = function(plugin, opts)
-      require("plugins.configs.telescope")(plugin, opts)
+      require "plugins.configs.telescope"(plugin, opts)
       local telescope = require "telescope"
       telescope.load_extension "media_files"
     end,
@@ -65,9 +67,23 @@ return {
           ["<C-p>"] = actions.move_selection_previous,
           ["<C-j>"] = actions.cycle_history_next,
           ["<C-k>"] = actions.cycle_history_prev,
-        }
+        },
       }
       return opts
-    end
-  }
+    end,
+  },
+  {
+    "telescope.nvim",
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      config = function() require("telescope").load_extension "fzf" end,
+    },
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      current_line_blame = true,
+    },
+  },
 }
