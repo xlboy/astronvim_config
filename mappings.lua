@@ -19,6 +19,21 @@ return {
       function() require("telescope.builtin").buffers() end,
       desc = "Find buffers",
     },
+    ["<S-h>"] = { "^" },
+    ["<S-l>"] = { "$" },
+    -- ["<S-k>"] = { "8k", desc = "向上移动8个" },
+    -- ["<S-j>"] = { "8j", desc = "向下移动8个" },
+    ["<S-j>"] = { function() end, desc = "向下移动8个" },
+    ["<S-u>"] = { "20k", desc = "向上移动20个" },
+    ["<S-d>"] = { "20j", desc = "向下移动20个" },
+    -- ["<leader>/"] = {
+    --   function() require("telescope.builtin").live_grep() end,
+    --   desc = "Find words",
+    -- },
+    -- ["<leader>,"] = {
+    --   function() require("telescope.builtin").buffers() end,
+    --   desc = "Find buffers",
+    -- },
     ["<C-c>"] = { "<cmd> %y+ <cr>", desc = "copy file" },
     ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>bD"] = {
@@ -44,10 +59,16 @@ return {
     },
   },
   i = {
-    ["<C-h>"] = { "<left>", desc = "left" },
-    ["<C-j>"] = { "<down>", desc = "down" },
-    ["<C-k>"] = { "<up>", desc = "up" },
-    ["<C-l>"] = { "<right>", desc = "right" },
+    ["kj"] = { "<esc>" },
+    ["jk"] = { "<esc>" },
+  },
+  v = {
+    ["<S-h>"] = { "^" },
+    ["<S-l>"] = { "$" },
+    ["<S-k>"] = { "8k", desc = "向上移动8个" },
+    ["<S-j>"] = { "8j", desc = "向下移动8个" },
+    ["<S-u>"] = { "20k", desc = "向上移动20个" },
+    ["<S-d>"] = { "20j", desc = "向下移动20个" },
   },
   t = {
     -- setting a mapping to false will disable it

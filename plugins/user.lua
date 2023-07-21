@@ -85,4 +85,24 @@ return {
       { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Find undo" },
     },
   },
+  {
+    "yamatsum/nvim-cursorline",
+    opts = {
+      cursorline = {
+        enable = true,
+        timeout = 1000,
+        number = false,
+      },
+      cursorword = {
+        enable = true,
+        min_length = 3,
+        hl = { underline = true },
+      },
+    },
+  },
+  {
+    "chaoren/vim-wordmotion",
+  },
+  { "terryma/vim-smooth-scroll" },
+  { "Eandrju/cellular-automaton.nvim" },
 }

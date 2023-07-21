@@ -91,4 +91,8 @@ return {
       return opts
     end,
   },
+  {
+    "max397574/better-escape.nvim",
+    opts = { timeout = 0 },
+  },
 }

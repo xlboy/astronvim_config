@@ -27,6 +27,13 @@ return {
   },
 
   lsp = {
+    mappings = {
+      n = {
+        -- this mapping will only be set in buffers with an LSP attached
+        gh = { function() vim.lsp.buf.hover() end, desc = "Hover symbol details" },
+        K = false,
+      },
+    },
     formatting = {
       -- control auto formatting on save
       format_on_save = {},
