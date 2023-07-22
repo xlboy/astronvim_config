@@ -6,7 +6,8 @@
 return {
   -- first key is the mode
   n = {
-    [";"] = { ":", desc = "command mode" },
+    ["<leader>fml"] = { "<cmd>CellularAutomaton make_it_rain<CR>" },
+    ["<leader>fmk"] = { "<cmd>CellularAutomaton game_of_life<CR>" },
     ["<leader><leader>"] = {
       function() require("telescope.builtin").find_files() end,
       desc = "Find files",
@@ -21,11 +22,10 @@ return {
     },
     ["<S-h>"] = { "^" },
     ["<S-l>"] = { "$" },
-    -- ["<S-k>"] = { "8k", desc = "向上移动8个" },
-    -- ["<S-j>"] = { "8j", desc = "向下移动8个" },
-    ["<S-j>"] = { function() end, desc = "向下移动8个" },
-    ["<S-u>"] = { "20k", desc = "向上移动20个" },
-    ["<S-d>"] = { "20j", desc = "向下移动20个" },
+    ["<S-k>"] = { ":call smooth_scroll#up(8, 20, 2)<CR>" },
+    ["<S-j>"] = { ":call smooth_scroll#down(8, 20, 2)<CR>" },
+    ["<S-u>"] = { ":call smooth_scroll#up(20, 20, 2)<CR>" },
+    ["<S-d>"] = { ":call smooth_scroll#down(20, 20, 2)<CR>" },
     -- ["<leader>/"] = {
     --   function() require("telescope.builtin").live_grep() end,
     --   desc = "Find words",
@@ -49,11 +49,11 @@ return {
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
     ["<C-s>"] = { ":w!<cr>", desc = "Save File" }, -- change description but the same command
-    ["<S-l>"] = {
+    ["<leader>wl"] = {
       function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
       desc = "Next buffer",
     },
-    ["<S-h>"] = {
+    ["<leader>wh"] = {
       function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
       desc = "Previous tab",
     },

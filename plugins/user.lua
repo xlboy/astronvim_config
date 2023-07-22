@@ -22,9 +22,7 @@ return {
       }
     end,
   },
-  {
-    "jxnblk/vim-mdx-js",
-  },
+  { "jxnblk/vim-mdx-js" },
   {
     "dpayne/CodeGPT.nvim",
     dependencies = {
@@ -85,24 +83,12 @@ return {
       { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Find undo" },
     },
   },
+  { "terryma/vim-smooth-scroll", event = "InsertEnter" },
+  { "itchyny/vim-cursorword", event = "InsertEnter" },
   {
-    "yamatsum/nvim-cursorline",
-    opts = {
-      cursorline = {
-        enable = true,
-        timeout = 1000,
-        number = false,
-      },
-      cursorword = {
-        enable = true,
-        min_length = 3,
-        hl = { underline = true },
-      },
-    },
+    "echasnovski/mini.animate",
+    version = "*",
+    config = function() require("mini.animate").setup() end,
+    event = "InsertEnter",
   },
-  {
-    "chaoren/vim-wordmotion",
-  },
-  { "terryma/vim-smooth-scroll" },
-  { "Eandrju/cellular-automaton.nvim" },
 }

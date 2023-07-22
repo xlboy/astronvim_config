@@ -4,6 +4,7 @@ return {
   { import = "astrocommunity.colorscheme.tokyonight-nvim" },
   { import = "astrocommunity.media.pets-nvim" },
   { import = "astrocommunity.scrolling.nvim-scrollbar" },
+  -- { import = "astrocommunity.scrolling.vim-smoothie" },
   { import = "astrocommunity.project.nvim-spectre" },
   { import = "astrocommunity.project.project-nvim" },
 
