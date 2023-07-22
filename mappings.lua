@@ -3,6 +3,8 @@
 -- Please use this mappings table to set keyboard mapping since this is the
 -- lower level configuration and more robust one. (which-key will
 -- automatically pick-up stored data by this setting.)
+local neoscroll = require "neoscroll"
+
 return {
   -- first key is the mode
   n = {
@@ -22,10 +24,12 @@ return {
     },
     ["<S-h>"] = { "^" },
     ["<S-l>"] = { "$" },
-    ["<S-k>"] = { ":call smooth_scroll#up(8, 20, 2)<CR>" },
-    ["<S-j>"] = { ":call smooth_scroll#down(8, 20, 2)<CR>" },
-    ["<S-u>"] = { ":call smooth_scroll#up(20, 20, 2)<CR>" },
-    ["<S-d>"] = { ":call smooth_scroll#down(20, 20, 2)<CR>" },
+    ["<S-k>"] = { function() neoscroll.scroll(-8, true, 120) end },
+    ["<S-j>"] = { function() neoscroll.scroll(8, true, 120) end },
+    ["<S-u>"] = { function() neoscroll.scroll(-20, true, 200) end },
+    ["<S-d>"] = { function() neoscroll.scroll(20, true, 200) end },
+    -- ["<S-u>"] = { ":call smooth_scroll#up(20, 20, 2)<CR>" },
+    -- ["<S-d>"] = { ":call smooth_scroll#down(20, 20, 2)<CR>" },
     -- ["<leader>/"] = {
     --   function() require("telescope.builtin").live_grep() end,
     --   desc = "Find words",
@@ -70,8 +74,5 @@ return {
     ["<S-u>"] = { "20k", desc = "向上移动20个" },
     ["<S-d>"] = { "20j", desc = "向下移动20个" },
   },
-  t = {
-    -- setting a mapping to false will disable it
-    -- ["<esc>"] = false,
-  },
+  t = {},
 }

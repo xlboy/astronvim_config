@@ -77,6 +77,7 @@ return {
       },
     },
   },
+  { "echasnovski/mini.ai", version = "*", config = function() require("mini.ai").setup() end },
   {
     "debugloop/telescope-undo.nvim",
     keys = {
@@ -84,11 +85,18 @@ return {
     },
   },
   { "terryma/vim-smooth-scroll", event = "InsertEnter" },
+  { "karb94/neoscroll.nvim", event = "InsertEnter", config = function() require("neoscroll").setup() end },
   { "itchyny/vim-cursorword", event = "InsertEnter" },
   {
-    "echasnovski/mini.animate",
-    version = "*",
-    config = function() require("mini.animate").setup() end,
+    "gen740/SmoothCursor.nvim",
+    config = function()
+      require("smoothcursor").setup {
+        cursor = "",
+        fancy = {
+          enable = true,
+        },
+      }
+    end,
     event = "InsertEnter",
   },
 }
