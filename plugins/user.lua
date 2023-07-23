@@ -45,15 +45,15 @@ return {
       },
     },
   },
-  {
-    "danymat/neogen",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    cmd = "Neogen",
-    keys = {
-      { "gdd", function() require("neogen").generate {} end, desc = "Neogen" },
-    },
-    config = true,
-  },
+  -- {
+  --   "danymat/neogen",
+  --   dependencies = "nvim-treesitter/nvim-treesitter",
+  --   cmd = "Neogen",
+  --   keys = {
+  --     { "gdd", function() require("neogen").generate {} end, desc = "Neogen" },
+  --   },
+  --   config = true,
+  -- },
   {
     "echasnovski/mini.surround",
     keys = {
@@ -84,19 +84,59 @@ return {
       { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Find undo" },
     },
   },
-  -- { "terryma/vim-smooth-scroll", event = "VeryLazy" },
   { "karb94/neoscroll.nvim", event = "VeryLazy", config = function() require("neoscroll").setup() end },
   -- { "itchyny/vim-cursorword", event = "VeryLazy" },
-  -- {
-  --   "gen740/SmoothCursor.nvim",
-  --   config = function()
-  --     require("smoothcursor").setup {
-  --       cursor = "",
-  --       fancy = {
-  --         enable = true,
-  --       },
-  --     }
-  --   end,
-  --   event = "VeryLazy",
-  -- },
+  {
+    "gen740/SmoothCursor.nvim",
+    config = function()
+      require("smoothcursor").setup {
+        cursor = "",
+        fancy = {
+          enable = true,
+        },
+      }
+    end,
+    event = "VeryLazy",
+  },
+  {
+    "echasnovski/mini.animate",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+      require("mini.animate").setup {
+        scroll = {
+          enable = true,
+          timing = function(_, n) return 100 / n end,
+        },
+        cursor = {
+          enable = true,
+          timing = function(_, n) return 100 / n end,
+        },
+      }
+    end,
+  },
+  { "chaoren/vim-wordmotion", event = "VeryLazy" },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {
+      modes = {
+        char = {
+          enabled = false,
+        },
+      },
+    },
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      {
+        "<leader>lv",
+        mode = { "n", "o", "x" },
+        function() require("flash").treesitter() end,
+        desc = "Flash Treesitter",
+      },
+    },
+  },
+  { "folke/twilight.nvim", event = "VeryLazy" },
+  { "wellle/targets.vim", event = "VeryLazy" },
 }

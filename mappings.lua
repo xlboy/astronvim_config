@@ -10,8 +10,8 @@ return {
   n = {
     ["<leader>fml"] = { "<cmd>CellularAutomaton make_it_rain<CR>" },
     ["<leader>fmk"] = { "<cmd>CellularAutomaton game_of_life<CR>" },
-    [";d"] = { '"0d' },
-    [";c"] = { '"0c' },
+    ["'d"] = { '"0d' },
+    ["'c"] = { '"0c' },
     ["<leader><leader>"] = {
       function() require("telescope.builtin").find_files() end,
       desc = "Find files",
@@ -26,10 +26,16 @@ return {
     },
     ["<S-h>"] = { "^" },
     ["<S-l>"] = { "$" },
-    ["<S-k>"] = { function() neoscroll.scroll(-8, true, 120) end },
-    ["<S-j>"] = { function() neoscroll.scroll(8, true, 120) end },
-    ["<S-u>"] = { function() neoscroll.scroll(-20, true, 200) end },
-    ["<S-d>"] = { function() neoscroll.scroll(20, true, 200) end },
+
+    ["<S-k>"] = { "8k" },
+    ["<S-j>"] = { "8j" },
+    ["<S-u>"] = { "20k" },
+    ["<S-d>"] = { "20j" },
+
+    -- ["<S-k>"] = { function() neoscroll.scroll(-8, true, 120) end },
+    -- ["<S-j>"] = { function() neoscroll.scroll(8, true, 120) end },
+    -- ["<S-u>"] = { function() neoscroll.scroll(-20, true, 200) end },
+    -- ["<S-d>"] = { function() neoscroll.scroll(20, true, 200) end },
     -- ["<S-j>"] = { ":call smooth_scroll#down(8, 20, 2)<CR>" },
     -- ["<S-k>"] = { ":call smooth_scroll#up(8, 20, 2)<CR>" },
     -- ["<S-u>"] = { ":call smooth_scroll#up(20, 20, 2)<CR>" },
@@ -77,6 +83,8 @@ return {
     ["<S-j>"] = { "8j" },
     ["<S-u>"] = { "20k" },
     ["<S-d>"] = { "20j" },
+    ["'d"] = { '"0d' },
+    ["'c"] = { '"0c' },
   },
   t = {},
 }

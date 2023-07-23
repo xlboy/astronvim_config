@@ -8,9 +8,9 @@ return {
   { import = "astrocommunity.project.nvim-spectre" },
   { import = "astrocommunity.project.project-nvim" },
 
-  { import = "astrocommunity.motion.leap-nvim" },
+  -- { import = "astrocommunity.motion.leap-nvim" },
   { import = "astrocommunity.motion.flit-nvim" },
-  { import = "astrocommunity.motion.nvim-spider" },
+  -- { import = "astrocommunity.motion.nvim-spider" },
   { import = "astrocommunity.motion.mini-move" },
   { import = "astrocommunity.motion.mini-ai" },
 
@@ -24,7 +24,6 @@ return {
   { import = "astrocommunity.pack.typescript-all-in-one" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.python" },
-  { import = "astrocommunity.pack.prisma" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.json" },
   { import = "astrocommunity.pack.html-css" },
