@@ -23,20 +23,20 @@ return {
     end,
   },
   { "jxnblk/vim-mdx-js" },
-  {
-    "dpayne/CodeGPT.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-    },
-    cmd = "Chat",
-    config = function()
-      require "codegpt.config"
-      vim.g["codegpt_openai_api_key"] = os.getenv "OPENAI_SB_API_KEY"
-      vim.g["codegpt_openai_api_provider"] = "OpenAI"
-      vim.g["codegpt_chat_completions_url"] = "https://api.openai-sb.com/v1/chat/completions"
-    end,
-  },
+  -- {
+  --   "dpayne/CodeGPT.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "MunifTanjim/nui.nvim",
+  --   },
+  --   cmd = "Chat",
+  --   config = function()
+  --     require "codegpt.config"
+  --     vim.g["codegpt_openai_api_key"] = os.getenv "OPENAI_SB_API_KEY"
+  --     vim.g["codegpt_openai_api_provider"] = "OpenAI"
+  --     vim.g["codegpt_chat_completions_url"] = "https://api.openai-sb.com/v1/chat/completions"
+  --   end,
+  -- },
   {
     "petertriho/nvim-scrollbar",
     opts = {
@@ -84,19 +84,19 @@ return {
       { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Find undo" },
     },
   },
-  { "terryma/vim-smooth-scroll", event = "InsertEnter" },
-  { "karb94/neoscroll.nvim", event = "InsertEnter", config = function() require("neoscroll").setup() end },
-  { "itchyny/vim-cursorword", event = "InsertEnter" },
-  {
-    "gen740/SmoothCursor.nvim",
-    config = function()
-      require("smoothcursor").setup {
-        cursor = "",
-        fancy = {
-          enable = true,
-        },
-      }
-    end,
-    event = "InsertEnter",
-  },
+  -- { "terryma/vim-smooth-scroll", event = "VeryLazy" },
+  { "karb94/neoscroll.nvim", event = "VeryLazy", config = function() require("neoscroll").setup() end },
+  -- { "itchyny/vim-cursorword", event = "VeryLazy" },
+  -- {
+  --   "gen740/SmoothCursor.nvim",
+  --   config = function()
+  --     require("smoothcursor").setup {
+  --       cursor = "",
+  --       fancy = {
+  --         enable = true,
+  --       },
+  --     }
+  --   end,
+  --   event = "VeryLazy",
+  -- },
 }
