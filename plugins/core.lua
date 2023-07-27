@@ -40,6 +40,7 @@ return {
     end,
     opts = function(_, opts)
       local actions = require "telescope.actions"
+      opts.enable_git_status = false
       opts.defaults.mappings = {
         i = {
           ["<C-n>"] = actions.move_selection_next,
@@ -98,5 +99,9 @@ return {
       opts.winbar = nil
       return opts
     end,
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {},
   },
 }

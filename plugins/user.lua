@@ -1,28 +1,16 @@
 return {
-  {
-    "andrewferrier/debugprint.nvim",
-    keys = {
-      { "g?p", desc = "Print debug info" },
-      { "g?v", desc = "Print selection debug info", mode = "v" },
-    },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = function() require("debugprint").setup() end,
-    version = "*",
-  },
-  {
-    "smjonas/live-command.nvim",
-    cmd = { "Norm" },
-    config = function()
-      require("live-command").setup {
-        commands = {
-          Norm = { cmd = "norm" },
-        },
-      }
-    end,
-  },
-  { "jxnblk/vim-mdx-js" },
+  -- {
+  --   "smjonas/live-command.nvim",
+  --   cmd = { "Norm" },
+  --   config = function()
+  --     require("live-command").setup {
+  --       commands = {
+  --         Norm = { cmd = "norm" },
+  --       },
+  --     }
+  --   end,
+  -- },
+  -- { "jxnblk/vim-mdx-js" },
   -- {
   --   "dpayne/CodeGPT.nvim",
   --   dependencies = {
@@ -77,14 +65,14 @@ return {
       },
     },
   },
-  { "echasnovski/mini.ai", version = "*", config = function() require("mini.ai").setup() end },
   {
     "debugloop/telescope-undo.nvim",
     keys = {
       { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Find undo" },
     },
   },
-  { "karb94/neoscroll.nvim", event = "VeryLazy", config = function() require("neoscroll").setup() end },
+  -- ........................
+  -- { "karb94/neoscroll.nvim", event = "VeryLazy", config = function() require("neoscroll").setup() end },
   -- { "itchyny/vim-cursorword", event = "VeryLazy" },
   {
     "gen740/SmoothCursor.nvim",
@@ -135,8 +123,29 @@ return {
         function() require("flash").treesitter() end,
         desc = "Flash Treesitter",
       },
+      {
+        "<leader>k",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump {
+            search = { mode = "search", max_length = 0, forward = false, wrap = false, multi_window = false },
+            label = { after = { 0, 0 } },
+            pattern = "[^ ]*.",
+          }
+        end,
+      },
+      {
+        "<leader>j",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump {
+            search = { mode = "search", max_length = 0, forward = true, wrap = false, multi_window = false },
+            label = { after = { 0, 0 } },
+            pattern = "[^ ]*.",
+          }
+        end,
+      },
     },
   },
-  { "folke/twilight.nvim", event = "VeryLazy" },
   { "wellle/targets.vim", event = "VeryLazy" },
 }

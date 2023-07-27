@@ -3,7 +3,7 @@
 -- Please use this mappings table to set keyboard mapping since this is the
 -- lower level configuration and more robust one. (which-key will
 -- automatically pick-up stored data by this setting.)
-local neoscroll = require "neoscroll"
+-- local neoscroll = require "neoscroll"
 
 return {
   -- first key is the mode
