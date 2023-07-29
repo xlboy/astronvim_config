@@ -1,3 +1,30 @@
+vim.opt.backup = false
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  group = vim.api.nvim_create_augroup('timestamp_backupext', { clear = true }),
+  desc = '文件保存前将文件的前一份记录复制到备份目录下',
+  pattern = '*',
+  callback = function()
+    local current_file = vim.api.nvim_buf_get_name(0)
+    local current_cwd = vim.fn.getcwd()
+    local relative_path = vim.fn.fnamemodify(current_file, ':~:.' .. current_cwd .. ':.')
+    local backup_target_path = current_cwd .. '/.nvim-history/' .. relative_path .. '-' .. vim.fn.strftime('%m-%d %H:%M:%S')
+    vim.fn.system('cp "' .. current_file .. '" "' .. backup_target_path .. '"')
+  end,
+});
+
+if vim.g.neovide then
+  local alpha = function() return string.format("%x", math.floor(255 * vim.g.transparency or 0.8)) end
+
+  vim.g.neovide_padding_right = 5
+  vim.g.neovide_padding_left = 5
+  vim.o.guifont = "ComicShannsMono Nerd Font Mono:h18"
+  vim.g.neovide_transparency = 0.0
+  vim.g.transparency = 0.8
+  vim.g.neovide_background_color = "#0f1117" .. alpha()
+  vim.g.neovide_cursor_animate_in_insert_mode = true
+end
+
 return {
   -- Configure AstroNvim updates
   updater = {
@@ -22,7 +49,7 @@ return {
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
-    virtual_text = true,
+    virtual_text = false,
     underline = true,
   },
 
@@ -36,7 +63,7 @@ return {
     },
     formatting = {
       -- control auto formatting on save
-      format_on_save = {},
+      format_on_save = false,
       disabled = { -- disable formatting capabilities for the listed language servers
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
       },

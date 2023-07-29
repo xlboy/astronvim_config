@@ -27,6 +27,7 @@ return {
   -- },
   {
     "petertriho/nvim-scrollbar",
+    enabled = false,
     opts = {
       handlers = {
         cursor = false,
@@ -94,18 +95,17 @@ return {
       require("mini.animate").setup {
         scroll = {
           enable = true,
-          timing = function(_, n) return 100 / n end,
+          timing = function(_, n) return 150 / n end,
         },
         cursor = {
-          enable = true,
-          timing = function(_, n) return 100 / n end,
+          enable = false,
         },
       }
     end,
   },
   { "chaoren/vim-wordmotion", event = "VeryLazy" },
   {
-    "folke/flash.nvim",
+    "xlboy/flash.nvim",
     event = "VeryLazy",
     ---@type Flash.Config
     opts = {
@@ -123,29 +123,60 @@ return {
         function() require("flash").treesitter() end,
         desc = "Flash Treesitter",
       },
-      {
-        "<leader>k",
-        mode = { "n", "x", "o" },
-        function()
-          require("flash").jump {
-            search = { mode = "search", max_length = 0, forward = false, wrap = false, multi_window = false },
-            label = { after = { 0, 0 } },
-            pattern = "[^ ]*.",
-          }
-        end,
-      },
-      {
-        "<leader>j",
-        mode = { "n", "x", "o" },
-        function()
-          require("flash").jump {
-            search = { mode = "search", max_length = 0, forward = true, wrap = false, multi_window = false },
-            label = { after = { 0, 0 } },
-            pattern = "[^ ]*.",
-          }
-        end,
-      },
+      -- {
+      --   "<leader>k",
+      --   mode = { "n", "x", "o" },
+      --   function()
+      --     require("flash").jump {
+      --       search = { mode = "search", max_length = 0, forward = false, wrap = false, multi_window = false },
+      --       label = { after = { 0, 0 } },
+      --       pattern = "^",
+      --     }
+      --   end,
+      -- },
+      -- {
+      --   "<leader>j",
+      --   mode = { "n", "x", "o" },
+      --   function()
+      --     require("flash").jump {
+      --       search = { mode = "search", max_length = 0, forward = true, wrap = false, multi_window = false },
+      --       label = { after = { 0, 0 } },
+      --       pattern = "^",
+      --     }
+      --   end,
+      -- },
     },
   },
   { "wellle/targets.vim", event = "VeryLazy" },
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "UIEnter" },
+    init = function()
+      vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
+
+      require("hlchunk").setup {
+        chunk = {
+          enable = true,
+          use_treesitter = true,
+          style = {
+            { fg = "#73daca" },
+          },
+        },
+        indent = {
+          enable = false,
+          chars = { "." },
+          use_treesitter = false,
+          style = {
+            {},
+          },
+        },
+        blank = {
+          enable = false,
+        },
+        line_num = {
+          enable = false,
+        },
+      }
+    end,
+  },
 }

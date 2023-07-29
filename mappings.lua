@@ -31,6 +31,7 @@ return {
     ["<S-j>"] = { "8j" },
     ["<S-u>"] = { "20k" },
     ["<S-d>"] = { "20j" },
+    ["<leader>fp"] = { ":Telescope projects<CR>" },
 
     -- ["<S-k>"] = { function() neoscroll.scroll(-8, true, 120) end },
     -- ["<S-j>"] = { function() neoscroll.scroll(8, true, 120) end },

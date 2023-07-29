@@ -102,6 +102,9 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
-    opts = {},
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    enabled = false,
   },
 }

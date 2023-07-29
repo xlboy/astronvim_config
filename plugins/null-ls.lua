@@ -7,7 +7,7 @@ return {
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
     config.sources = {
-      null_ls.builtins.formatting.stylua,
+      null_ls.builtins.diagnostics.eslint
     }
     return config -- return final config table
   end,
@@ -26,13 +26,6 @@ return {
                   or u.root_has_file ".prettierrc"
                   or u.root_has_file ".prettierrc.json"
                   or u.root_has_file ".prettierrc.js"
-              end,
-            })
-          end,
-          deno_fmt = function()
-            null_ls.register(b.formatting.deno_fmt.with {
-              condition = function(u)
-                return u.root_has_file "deno.json" or u.root_has_file "deno.jsonc" or u.root_has_file "denonvim.tag"
               end,
             })
           end,
