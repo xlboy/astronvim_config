@@ -123,28 +123,28 @@ return {
         function() require("flash").treesitter() end,
         desc = "Flash Treesitter",
       },
-      -- {
-      --   "<leader>k",
-      --   mode = { "n", "x", "o" },
-      --   function()
-      --     require("flash").jump {
-      --       search = { mode = "search", max_length = 0, forward = false, wrap = false, multi_window = false },
-      --       label = { after = { 0, 0 } },
-      --       pattern = "^",
-      --     }
-      --   end,
-      -- },
-      -- {
-      --   "<leader>j",
-      --   mode = { "n", "x", "o" },
-      --   function()
-      --     require("flash").jump {
-      --       search = { mode = "search", max_length = 0, forward = true, wrap = false, multi_window = false },
-      --       label = { after = { 0, 0 } },
-      --       pattern = "^",
-      --     }
-      --   end,
-      -- },
+      {
+        "<leader>k",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump {
+            search = { mode = "search", max_length = 0, forward = false, wrap = false, multi_window = false },
+            label = { after = { 0, 0 } },
+            pattern = "^",
+          }
+        end,
+      },
+      {
+        "<leader>j",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump {
+            search = { mode = "search", max_length = 0, forward = true, wrap = false, multi_window = false },
+            label = { after = { 0, 0 } },
+            pattern = "^",
+          }
+        end,
+      },
     },
   },
   { "wellle/targets.vim", event = "VeryLazy" },
