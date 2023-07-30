@@ -116,7 +116,12 @@ return {
       },
     },
     keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "s", mode = { "n", "x", "o" }, function()
+        require("flash").jump{
+          search = { mode = "fuzzy" }
+        }
+      end, desc = "Flash" },
       {
         "<leader>lv",
         mode = { "n", "o", "x" },
@@ -150,7 +155,7 @@ return {
   { "wellle/targets.vim", event = "VeryLazy" },
   {
     "shellRaining/hlchunk.nvim",
-    event = { "UIEnter" },
+    event = "UIEnter",
     init = function()
       vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
 
@@ -179,4 +184,21 @@ return {
       }
     end,
   },
+  {
+    'tamton-aquib/duck.nvim',
+    event = "VeryLazy",
+    config = function()
+      vim.keymap.set('n', '<leader>dd', function() require("duck").hatch() end, {})
+      vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {})
+    end
+  },
+  {
+    'rmagatti/goto-preview',
+    event = "VeryLazy",
+    config = function()
+      require('goto-preview').setup {
+        default_mappings = true
+      }
+    end
+  }
 }

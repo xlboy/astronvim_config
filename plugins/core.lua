@@ -102,6 +102,14 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      source_selector = {
+        winbar = false,
+        sources = {
+          { source = "filesystem" }
+        }
+      }
+    }
   },
   {
     "lukas-reineke/indent-blankline.nvim",
