@@ -22,7 +22,7 @@ if vim.g.neovide then
 
   vim.g.neovide_padding_right = 5
   vim.g.neovide_padding_left = 5
-  vim.o.guifont = "ComicShannsMono Nerd Font Mono:h18"
+  vim.o.guifont = "ComicShannsMono Nerd Font Mono:h14"
   vim.g.neovide_transparency = 0.0
   vim.g.transparency = 0.8
   vim.g.neovide_background_color = "#0f1117" .. alpha()

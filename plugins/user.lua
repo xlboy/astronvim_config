@@ -110,6 +110,9 @@ return {
     ---@type Flash.Config
     opts = {
       modes = {
+        search = {
+          enabled = false
+        },
         char = {
           enabled = false,
         },
@@ -240,5 +243,18 @@ return {
       vim.keymap.set("n", "gY", "<CMD>Glance type_definitions<CR>")
       vim.keymap.set("n", "gM", "<CMD>Glance implementations<CR>")
     end,
+  },
+  {
+    "andymass/vim-matchup",
+    event = "VeryLazy",
+    config = function()
+      -- may set any options here
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      require("nvim-treesitter.configs").setup({
+        matchup = {
+          enable = true, -- mandatory, false will disable the whole extension
+        },
+      })
+    end
   }
 }

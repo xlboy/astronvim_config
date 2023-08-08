@@ -1,8 +1,8 @@
-
 return {
   n = {
     ["<leader>fml"] = { "<cmd>CellularAutomaton make_it_rain<CR>" },
     ["<leader>fmk"] = { "<cmd>CellularAutomaton game_of_life<CR>" },
+    ["<leader>sa"] = { "ggVG" },
     ["'d"] = { '"0d' },
     ["'c"] = { '"0c' },
     ["<leader><leader>"] = {
