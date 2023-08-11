@@ -5,10 +5,10 @@ return {
   { import = "astrocommunity.media.pets-nvim" },
   { import = "astrocommunity.scrolling.nvim-scrollbar" },
   -- { import = "astrocommunity.scrolling.vim-smoothie" },
-  { import = "astrocommunity.project.nvim-spectre" },
-  {
-    import = "astrocommunity.project.project-nvim",
-  },
+  -- { import = "astrocommunity.project.nvim-spectre" },
+  -- {
+    -- import = "astrocommunity.project.project-nvim",
+  -- },
 
   -- { import = "astrocommunity.motion.leap-nvim" },
   { import = "astrocommunity.motion.flit-nvim" },

@@ -120,11 +120,15 @@ return {
     },
     keys = {
       { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "x", "o" }, function()
-        require("flash").jump{
-          search = { mode = "fuzzy" }
-        }
-      end, desc = "Flash" },
+      {
+        "S",
+        mode = { "n", "x", "o" }, 
+        function()
+          require("flash").jump{
+            search = { mode = "fuzzy" }
+          }
+        end
+      },
       {
         "<leader>lv",
         mode = { "n", "o", "x" },
@@ -235,9 +239,7 @@ return {
     "dnlhc/glance.nvim",
     event = "VeryLazy",
     config = function()
-      require('glance').setup({
-      -- your configuration
-      })
+      require('glance').setup{}
       vim.keymap.set("n", "gD", "<CMD>Glance definitions<CR>")
       vim.keymap.set("n", "gR", "<CMD>Glance references<CR>")
       vim.keymap.set("n", "gY", "<CMD>Glance type_definitions<CR>")
@@ -252,9 +254,30 @@ return {
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
       require("nvim-treesitter.configs").setup({
         matchup = {
-          enable = true, -- mandatory, false will disable the whole extension
+          enable = true,        
         },
       })
     end
+  },
+  {
+  "xlboy/text-case.nvim",
+  -- dir = "/Users/lilithgames/Desktop/xlboy/__open-source__/text-case.nvim",
+
+  event = "BufRead",
+  dependencies = { "nvim-telescope/telescope.nvim" },
+  config = function()
+    require("textcase").setup({})
+    require("telescope").load_extension("textcase")
+
+    vim.api.nvim_set_keymap("n", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
+    vim.api.nvim_set_keymap("v", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
+    vim.api.nvim_set_keymap(
+      "n",
+      "gaa",
+      "<cmd>TextCaseOpenTelescopeQuickChange<CR>",
+      { desc = "Telescope Quick Change" }
+    )
+    vim.api.nvim_set_keymap("n", "gai", "<cmd>TextCaseOpenTelescopeLSPChange<CR>", { desc = "Telescope LSP Change" })
+  end,
   }
 }
