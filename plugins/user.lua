@@ -210,7 +210,7 @@ return {
   },
   {
     'tomasky/bookmarks.nvim',
-  -- after = "telescope.nvim",
+    -- after = "telescope.nvim",
     event = "VeryLazy",
     config = function()
       vim.opt.signcolumn = "yes:2"
@@ -260,24 +260,57 @@ return {
     end
   },
   {
-  "xlboy/text-case.nvim",
-  -- dir = "/Users/lilithgames/Desktop/xlboy/__open-source__/text-case.nvim",
+    "xlboy/text-case.nvim",
+    -- dir = "~/Desktop/xlboy/__open-source__/text-case.nvim",
 
-  event = "BufRead",
-  dependencies = { "nvim-telescope/telescope.nvim" },
-  config = function()
-    require("textcase").setup({})
-    require("telescope").load_extension("textcase")
+    event = "BufRead",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("textcase").setup({})
+      require("telescope").load_extension("textcase")
 
-    vim.api.nvim_set_keymap("n", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
-    vim.api.nvim_set_keymap("v", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
-    vim.api.nvim_set_keymap(
-      "n",
-      "gaa",
-      "<cmd>TextCaseOpenTelescopeQuickChange<CR>",
-      { desc = "Telescope Quick Change" }
-    )
-    vim.api.nvim_set_keymap("n", "gai", "<cmd>TextCaseOpenTelescopeLSPChange<CR>", { desc = "Telescope LSP Change" })
-  end,
+      vim.api.nvim_set_keymap("n", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
+      vim.api.nvim_set_keymap("v", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
+      vim.api.nvim_set_keymap(
+        "n",
+        "gaa",
+        "<cmd>TextCaseOpenTelescopeQuickChange<CR>",
+        { desc = "Telescope Quick Change" }
+      )
+      vim.api.nvim_set_keymap("n", "gai", "<cmd>TextCaseOpenTelescopeLSPChange<CR>", { desc = "Telescope LSP Change" })
+    end,
+  },
+  {
+    "antosha417/nvim-lsp-file-operations",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-neo-tree/neo-tree.nvim",
+    },
+    config = function()
+      require("lsp-file-operations").setup()
+    end,
+  },
+  {
+    "danielfalk/smart-open.nvim",
+    branch = "0.2.x",
+    event = "VeryLazy",
+    config = function()
+      require("telescope").load_extension("smart_open")
+    end,
+    dependencies = {
+      "kkharji/sqlite.lua",
+      "nvim-telescope/telescope.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      -- Optional.  If installed, native fzy will be used when match_algorithm is fzy
+      -- { "nvim-telescope/telescope-fzy-native.nvim" },
+    },
+  },
+  {
+    "prochri/telescope-all-recent.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    event = "VeryLazy",
+    config = function()
+      require("telescope-all-recent").setup({})
+    end,
   }
 }

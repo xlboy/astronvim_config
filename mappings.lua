@@ -5,10 +5,10 @@ return {
     ["<leader>sa"] = { "ggVG" },
     ["'d"] = { '"0d' },
     ["'c"] = { '"0c' },
-    ["<leader><leader>"] = {
-      function() require("telescope.builtin").find_files() end,
-      desc = "Find files",
-    },
+    -- ["<leader><leader>"] = {
+    --   function() require("telescope.builtin").find_files() end,
+    --   desc = "Find files",
+    -- },
     ["<leader>/"] = {
       function() require("telescope.builtin").live_grep() end,
       desc = "Find words",
@@ -23,7 +23,8 @@ return {
     ["<S-j>"] = { "8j" },
     ["<S-u>"] = { "20k" },
     ["<S-d>"] = { "20j" },
-    ["<leader>fp"] = { ":Telescope projects<CR>" },
+    ["<leader>fp"] = { ":Telescope smart_open<CR>" },
+    ["<leader><leader>"] = { ":Telescope smart_open<CR>" },
     ["<C-c>"] = { "<cmd> %y+ <cr>", desc = "copy file" },
     ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>bD"] = {

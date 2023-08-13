@@ -49,6 +49,15 @@ return {
           ["<C-k>"] = actions.cycle_history_prev,
         },
       }
+      opts.extensions = {
+        smart_open = {
+          show_scores = false,
+          ignore_patterns = { "*.git/*", "*/tmp/*" },
+          match_algorithm = "fzf",
+          disable_devicons = false,
+          cwd_only = true,
+        }
+      }
       return opts
     end,
   },
