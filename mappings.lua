@@ -5,10 +5,6 @@ return {
     ["<leader>sa"] = { "ggVG" },
     ["'d"] = { '"0d' },
     ["'c"] = { '"0c' },
-    -- ["<leader><leader>"] = {
-    --   function() require("telescope.builtin").find_files() end,
-    --   desc = "Find files",
-    -- },
     ["<leader>/"] = {
       function() require("telescope.builtin").live_grep() end,
       desc = "Find words",
@@ -38,8 +34,6 @@ return {
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
-    -- quick save
-    ["<C-s>"] = { ":w!<cr>", desc = "Save File" }, -- change description but the same command
     ["]w"] = {
       function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
       desc = "Next buffer",
