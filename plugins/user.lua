@@ -332,5 +332,15 @@ return {
     config = function()
       vim.keymap.set('n', '<leader>vsc', require("export-to-vscode").launch, {})
     end,
+  },
+  {
+    "mg979/vim-visual-multi",
+    event = "VeryLazy",
+    init = function()
+      vim.cmd([[
+        let g:VM_mouse_mappings = 1
+        " let g:VM_leader = 'm'
+      ]])
+    end
   }
 }
