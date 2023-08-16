@@ -1,30 +1,4 @@
 return {
-  -- {
-  --   "smjonas/live-command.nvim",
-  --   cmd = { "Norm" },
-  --   config = function()
-  --     require("live-command").setup {
-  --       commands = {
-  --         Norm = { cmd = "norm" },
-  --       },
-  --     }
-  --   end,
-  -- },
-  -- { "jxnblk/vim-mdx-js" },
-  -- {
-  --   "dpayne/CodeGPT.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "MunifTanjim/nui.nvim",
-  --   },
-  --   cmd = "Chat",
-  --   config = function()
-  --     require "codegpt.config"
-  --     vim.g["codegpt_openai_api_key"] = os.getenv "OPENAI_SB_API_KEY"
-  --     vim.g["codegpt_openai_api_provider"] = "OpenAI"
-  --     vim.g["codegpt_chat_completions_url"] = "https://api.openai-sb.com/v1/chat/completions"
-  --   end,
-  -- },
   {
     "petertriho/nvim-scrollbar",
     enabled = false,
@@ -34,15 +8,15 @@ return {
       },
     },
   },
-  -- {
-  --   "danymat/neogen",
-  --   dependencies = "nvim-treesitter/nvim-treesitter",
-  --   cmd = "Neogen",
-  --   keys = {
-  --     { "gdd", function() require("neogen").generate {} end, desc = "Neogen" },
-  --   },
-  --   config = true,
-  -- },
+  {
+    "danymat/neogen",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    cmd = "Neogen",
+    keys = {
+      { "gdd", function() require("neogen").generate {} end, desc = "Neogen" },
+    },
+    config = true,
+  },
   {
     "echasnovski/mini.surround",
     keys = {
@@ -212,6 +186,7 @@ return {
     'tomasky/bookmarks.nvim',
     -- after = "telescope.nvim",
     event = "VeryLazy",
+    enabled = false,
     config = function()
       vim.opt.signcolumn = "yes:2"
       require("bookmarks").setup({
@@ -342,5 +317,5 @@ return {
         " let g:VM_leader = 'm'
       ]])
     end
-  }
+  },
 }
