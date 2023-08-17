@@ -338,30 +338,44 @@ return {
     config = function()
       local wilder = require('wilder')
       wilder.setup({modes = {':', '/', '?'}})
-      wilder.set_option('renderer', wilder.popupmenu_renderer({
-        pumblend = 20,
+      wilder.set_option('renderer', wilder.renderer_mux({
+        [':'] = wilder.popupmenu_renderer({
+          highlighter = wilder.basic_highlighter(),
+        }),
+        ['/'] = wilder.wildmenu_renderer({
+          highlighter = wilder.basic_highlighter(),
+        }),
       }))
     end,
-    dependencies = { "romgrk/fzy-lua-native" },
+    dependencies = {
+      "romgrk/fzy-lua-native",
+      "lambdalisue/nerdfont.vim"
+    },
   },
   {
     "nvim-pack/nvim-spectre",
-    cmd = "Spectre",
-    opts = { open_cmd = "noswapfile vnew" },
+    config = function()
+      require("spectre").setup({
+        mapping = {
+          ['send_to_qf'] = {
+            map = "<leader>o",
+          }
+        }
+      })
+    end,
     keys = {
       {
-        "<leader>sr",
+        "<leader>sa",
         function()
           require("spectre").open()
         end,
         desc = "Replace in files (Spectre)",
       },
       {
-        "<leader>sp",
+        "<leader>sc",
         function()
-          require("spectre").open_file_search({ select_word = true })
-        end,
-        desc = "Search on current file",
+          require("spectre").open_file_search()
+        end
       },
     },
   }
