@@ -77,7 +77,7 @@ return {
       }
     end,
   },
-  { "chaoren/vim-wordmotion", event = "VeryLazy" },
+  { "chaoren/vim-wordmotion", event = "VeryLazy", config = function() end },
   {
     "xlboy/flash.nvim",
     event = "VeryLazy",
@@ -85,7 +85,7 @@ return {
     opts = {
       modes = {
         search = {
-          enabled = false
+          enabled = false,
         },
         char = {
           enabled = false,
@@ -96,12 +96,12 @@ return {
       { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
       {
         "S",
-        mode = { "n", "x", "o" }, 
+        mode = { "n", "x", "o" },
         function()
-          require("flash").jump{
-            search = { mode = "fuzzy" }
+          require("flash").jump {
+            search = { mode = "fuzzy" },
           }
-        end
+        end,
       },
       {
         "<leader>lv",
@@ -166,31 +166,23 @@ return {
     end,
   },
   {
-    'tamton-aquib/duck.nvim',
+    "rmagatti/goto-preview",
     event = "VeryLazy",
     config = function()
-      vim.keymap.set('n', '<leader>dd', function() require("duck").hatch() end, {})
-      vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {})
-    end
-  },
-  {
-    'rmagatti/goto-preview',
-    event = "VeryLazy",
-    config = function()
-      require('goto-preview').setup {
-        default_mappings = true
+      require("goto-preview").setup {
+        default_mappings = true,
       }
-    end
+    end,
   },
   {
-    'tomasky/bookmarks.nvim',
+    "tomasky/bookmarks.nvim",
     -- after = "telescope.nvim",
     event = "VeryLazy",
     enabled = false,
     config = function()
       vim.opt.signcolumn = "yes:2"
-      require("bookmarks").setup({
-        save_file = vim.fn.expand("$HOME/.local/share/nvim/bookmarks"), -- bookmarks save file path
+      require("bookmarks").setup {
+        save_file = vim.fn.expand "$HOME/.local/share/nvim/bookmarks", -- bookmarks save file path
         keywords = {
           ["@t"] = "☑️ ", -- mark annotation startswith @t ,signs this icon as `Todo`
           ["@w"] = "⚠️ ", -- mark annotation startswith @w ,signs this icon as `Warn`
@@ -198,7 +190,7 @@ return {
           ["@n"] = " ", -- mark annotation startswith @n ,signs this icon as `Note`
         },
         on_attach = function(bufnr)
-          local bm = require("bookmarks")
+          local bm = require "bookmarks"
           local map = vim.keymap.set
           map("n", "mm", bm.bookmark_toggle) -- add or remove bookmark at current line
           map("n", "mi", bm.bookmark_ann) -- add or edit mark annotation at current line
@@ -207,14 +199,14 @@ return {
           map("n", "mp", bm.bookmark_prev) -- jump to previous mark in local buffer
           map("n", "ml", bm.bookmark_list) -- show marked file list in quickfix window
         end,
-      })
-    end
+      }
+    end,
   },
   {
     "dnlhc/glance.nvim",
     event = "VeryLazy",
     config = function()
-      require('glance').setup{}
+      require("glance").setup {}
       vim.keymap.set("n", "gD", "<CMD>Glance definitions<CR>")
       vim.keymap.set("n", "gR", "<CMD>Glance references<CR>")
       vim.keymap.set("n", "gY", "<CMD>Glance type_definitions<CR>")
@@ -222,27 +214,13 @@ return {
     end,
   },
   {
-    "andymass/vim-matchup",
-    event = "VeryLazy",
-    config = function()
-      -- may set any options here
-      vim.g.matchup_matchparen_offscreen = { method = "popup" }
-      require("nvim-treesitter.configs").setup({
-        matchup = {
-          enable = true,        
-        },
-      })
-    end
-  },
-  {
     "xlboy/text-case.nvim",
     -- dir = "~/Desktop/xlboy/__open-source__/text-case.nvim",
-
     event = "BufRead",
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
-      require("textcase").setup({})
-      require("telescope").load_extension("textcase")
+      require("textcase").setup {}
+      require("telescope").load_extension "textcase"
 
       vim.api.nvim_set_keymap("n", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
       vim.api.nvim_set_keymap("v", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
@@ -261,17 +239,13 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-neo-tree/neo-tree.nvim",
     },
-    config = function()
-      require("lsp-file-operations").setup()
-    end,
+    config = function() require("lsp-file-operations").setup() end,
   },
   {
     "danielfalk/smart-open.nvim",
     branch = "0.2.x",
     event = "VeryLazy",
-    config = function()
-      require("telescope").load_extension("smart_open")
-    end,
+    config = function() require("telescope").load_extension "smart_open" end,
     dependencies = {
       "kkharji/sqlite.lua",
       "nvim-telescope/telescope.nvim",
@@ -284,39 +258,30 @@ return {
     "prochri/telescope-all-recent.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     event = "VeryLazy",
-    config = function()
-      require("telescope-all-recent").setup({})
-    end,
+    config = function() require("telescope-all-recent").setup {} end,
   },
   {
-   "TobinPalmer/rayso.nvim",
+    "TobinPalmer/rayso.nvim",
     cmd = "Rayso",
     config = function()
-      require("rayso").setup({
+      require("rayso").setup {
         open_cmd = "Arc",
         options = {
-          theme = 'breeze',
+          theme = "breeze",
           padding = 16,
-        }
-      })
+        },
+      }
     end,
   },
   {
     "elijahmanor/export-to-vscode.nvim",
     event = "BufReadPost",
-    config = function()
-      vim.keymap.set('n', '<leader>vsc', require("export-to-vscode").launch, {})
-    end,
+    config = function() vim.keymap.set("n", "<leader>vsc", require("export-to-vscode").launch, {}) end,
   },
   {
     "mg979/vim-visual-multi",
     event = "VeryLazy",
-    init = function()
-      vim.cmd([[
-        let g:VM_mouse_mappings = 1
-        " let g:VM_leader = 'm'
-      ]])
-    end
+    init = function() vim.g.VM_mouse_mappings = 1 end,
   },
   {
     "wakatime/vim-wakatime",
@@ -328,56 +293,43 @@ return {
     event = "VeryLazy",
   },
   {
-    "gbprod/cutlass.nvim",
-    event = "VeryLazy",
-    opts = { cut_key = "x" },
-  },
-  {
     "gelguy/wilder.nvim",
     event = "CmdlineEnter",
     config = function()
-      local wilder = require('wilder')
-      wilder.setup({modes = {':', '/', '?'}})
-      wilder.set_option('renderer', wilder.renderer_mux({
-        [':'] = wilder.popupmenu_renderer({
-          highlighter = wilder.basic_highlighter(),
-        }),
-        ['/'] = wilder.wildmenu_renderer({
-          highlighter = wilder.basic_highlighter(),
-        }),
-      }))
+      local wilder = require "wilder"
+      wilder.setup { modes = { ":", "/", "?" } }
+      wilder.set_option(
+        "renderer",
+        wilder.renderer_mux {
+          [":"] = wilder.popupmenu_renderer {
+            highlighter = wilder.basic_highlighter(),
+          },
+          ["/"] = wilder.wildmenu_renderer {
+            highlighter = wilder.basic_highlighter(),
+          },
+        }
+      )
     end,
     dependencies = {
       "romgrk/fzy-lua-native",
-      "lambdalisue/nerdfont.vim"
+      "lambdalisue/nerdfont.vim",
     },
   },
   {
     "nvim-pack/nvim-spectre",
+    event = "VeryLazy",
     config = function()
-      require("spectre").setup({
+      require("spectre").setup {
         mapping = {
-          ['send_to_qf'] = {
-            map = "<leader>o",
-          }
-        }
-      })
+          ["send_to_qf"] = { map = "<leader>o" },
+        },
+      }
+      vim.keymap.set("v", "<leader>sc", '<esc><cmd>lua require("spectre").open_file_search()<CR>')
+      vim.keymap.set("v", "<leader>sa", '<esc><cmd>lua require("spectre").open_visual()<CR>')
     end,
     keys = {
-      {
-        "<leader>sa",
-        function()
-          require("spectre").open()
-        end,
-        desc = "Replace in files (Spectre)",
-      },
-      {
-        "<leader>sc",
-        function()
-          require("spectre").open_file_search()
-        end
-      },
+      { "<leader>sa", function() require("spectre").open() end },
+      { "<leader>sc", function() require("spectre").open_file_search() end },
     },
-  }
+  },
 }
-
