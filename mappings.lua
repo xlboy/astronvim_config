@@ -1,10 +1,49 @@
+local jump_to_specified_percent= function(percent)
+  local line = vim.api.nvim_get_current_line()
+  local trimmed_line = string.gsub(line, "^%s+", "")
+  local space_len = string.len(line) - string.len(trimmed_line)
+  local target_column = math.floor(#trimmed_line * percent) + space_len
+  local current_line = vim.api.nvim_win_get_cursor(0)[1]
+  vim.api.nvim_win_set_cursor(0, {current_line, target_column})
+end
+
+local inline_jump_percent = function()
+  local line = vim.api.nvim_get_current_line()
+  local trimmed_line = string.gsub(line, "^%s+", "")
+  local space_len = string.len(line) - string.len(trimmed_line)
+  local percent_column_map = {
+    ["25%"] = math.floor(#trimmed_line * 0.25) + space_len,
+    ["50%"] = math.floor(#trimmed_line * 0.5) + space_len,
+    ["75%"] = math.floor(#trimmed_line * 0.75) + space_len
+  }
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local current_line = cursor[1]
+  local current_column = cursor[2]
+  local target_column;
+  if (current_column < percent_column_map["25%"]) then
+    target_column = percent_column_map["25%"]
+  elseif (current_column < percent_column_map["50%"]) then
+    target_column = percent_column_map["50%"]
+  elseif (current_column >= percent_column_map["75%"]) then
+    target_column = percent_column_map["25%"]
+  else
+    target_column = percent_column_map["75%"]
+  end
+  vim.api.nvim_win_set_cursor(0, {current_line, target_column})
+end
+
 return {
   n = {
+    ["e"] = { function() inline_jump_percent() end},
+    ["g1"] = { function() jump_to_specified_percent(0.25) end },
+    ["g2"] = { function() jump_to_specified_percent(0.5) end },
+    ["g3"] = { function() jump_to_specified_percent(0.75) end },
+    ["<leader>tt"] = { "<cmd>:TodoTelescope<CR>" },
     ["<leader>fml"] = { "<cmd>CellularAutomaton make_it_rain<CR>" },
     ["<leader>fmk"] = { "<cmd>CellularAutomaton game_of_life<CR>" },
     ["<leader>sa"] = { "ggVG" },
-    ["'d"] = { '"0d' },
-    ["'c"] = { '"0c' },
+    -- ["'d"] = { '"0d' },
+    -- ["'c"] = { '"0c' },
     ["<leader>/"] = {
       function() require("telescope.builtin").live_grep() end,
       desc = "Find words",
@@ -54,8 +93,8 @@ return {
     ["<S-j>"] = { "8j" },
     ["<S-u>"] = { "20k" },
     ["<S-d>"] = { "20j" },
-    ["'d"] = { '"0d' },
-    ["'c"] = { '"0c' },
+    -- ["'d"] = { '"0d' },
+    -- ["'c"] = { '"0c' },
   },
   t = {},
 }

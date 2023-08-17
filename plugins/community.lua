@@ -5,7 +5,6 @@ return {
   { import = "astrocommunity.media.pets-nvim" },
   { import = "astrocommunity.scrolling.nvim-scrollbar" },
   -- { import = "astrocommunity.scrolling.vim-smoothie" },
-  -- { import = "astrocommunity.project.nvim-spectre" },
   -- {
     -- import = "astrocommunity.project.project-nvim",
   -- },
@@ -17,7 +16,6 @@ return {
   { import = "astrocommunity.motion.mini-ai" },
 
   { import = "astrocommunity.editing-support.nvim-regexplainer" },
-  { import = "astrocommunity.editing-support.todo-comments-nvim" },
   -- { import = "astrocommunity.editing-support.true-zen-nvim" },
   -- { import = "astrocommunity.editing-support.multicursors-nvim" },
   -- { import = "astrocommunity.editing-support.telescope-undo-nvim" },

@@ -318,4 +318,52 @@ return {
       ]])
     end
   },
+  {
+    "wakatime/vim-wakatime",
+    event = "VeryLazy",
+  },
+  {
+    "folke/todo-comments.nvim",
+    opts = {},
+    event = "VeryLazy",
+  },
+  {
+    "gbprod/cutlass.nvim",
+    event = "VeryLazy",
+    opts = { cut_key = "x" },
+  },
+  {
+    "gelguy/wilder.nvim",
+    event = "CmdlineEnter",
+    config = function()
+      local wilder = require('wilder')
+      wilder.setup({modes = {':', '/', '?'}})
+      wilder.set_option('renderer', wilder.popupmenu_renderer({
+        pumblend = 20,
+      }))
+    end,
+    dependencies = { "romgrk/fzy-lua-native" },
+  },
+  {
+    "nvim-pack/nvim-spectre",
+    cmd = "Spectre",
+    opts = { open_cmd = "noswapfile vnew" },
+    keys = {
+      {
+        "<leader>sr",
+        function()
+          require("spectre").open()
+        end,
+        desc = "Replace in files (Spectre)",
+      },
+      {
+        "<leader>sp",
+        function()
+          require("spectre").open_file_search({ select_word = true })
+        end,
+        desc = "Search on current file",
+      },
+    },
+  }
 }
+
