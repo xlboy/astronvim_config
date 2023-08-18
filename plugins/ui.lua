@@ -5,7 +5,7 @@ return {
     init = function()
       vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
 
-      require("hlchunk").setup {
+      require("hlchunk").setup({
         chunk = {
           enable = true,
           use_treesitter = true,
@@ -27,7 +27,8 @@ return {
         line_num = {
           enable = false,
         },
-      }
+      })
     end,
-  }
+  },
+  { "itchyny/vim-cursorword", event = "VeryLazy" },
 }
