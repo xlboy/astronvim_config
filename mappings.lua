@@ -34,10 +34,8 @@ end
 
 return {
   n = {
-    ["<leader>di"] = { '"_di' },
-    ["<leader>da"] = { '"_da' },
-    ["<leader>ci"] = { '"_ci' },
-    ["<leader>ca"] = { '"_ca' },
+    ["'d"] = { '"0d' },
+    ["'c"] = { '"0c' },
     ["e"] = { function() inline_jump_percent() end},
     ["g1"] = { function() jump_to_specified_percent(0.25) end },
     ["g2"] = { function() jump_to_specified_percent(0.5) end },
@@ -95,10 +93,8 @@ return {
     ["<S-j>"] = { "8j" },
     ["<S-u>"] = { "20k" },
     ["<S-d>"] = { "20j" },
-    ["<leader>di"] = { '"_di' },
-    ["<leader>da"] = { '"_da' },
-    ["<leader>ci"] = { '"_ci' },
-    ["<leader>ca"] = { '"_ca' },
+    ["'d"] = { '"0d' },
+    ["'c"] = { '"0c' },
   },
   t = {},
 }

@@ -71,13 +71,15 @@ return {
           enable = true,
           timing = function(_, n) return 150 / n end,
         },
-        cursor = {
-          enable = false,
-        },
+        cursor = { enable = false },
       }
     end,
   },
-  { "chaoren/vim-wordmotion", event = "VeryLazy", config = function() end },
+  {
+    "chaoren/vim-wordmotion",
+    event = "VeryLazy",
+    init = function() vim.g.wordmotion_prefix = ';' end,
+  },
   {
     "xlboy/flash.nvim",
     event = "VeryLazy",
