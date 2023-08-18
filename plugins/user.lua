@@ -1,14 +1,5 @@
 return {
   {
-    "petertriho/nvim-scrollbar",
-    enabled = false,
-    opts = {
-      handlers = {
-        cursor = false,
-      },
-    },
-  },
-  {
     "danymat/neogen",
     dependencies = "nvim-treesitter/nvim-treesitter",
     cmd = "Neogen",
@@ -40,15 +31,9 @@ return {
       },
     },
   },
-  {
-    "debugloop/telescope-undo.nvim",
-    keys = {
-      { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Find undo" },
-    },
-  },
   -- ........................
   -- { "karb94/neoscroll.nvim", event = "VeryLazy", config = function() require("neoscroll").setup() end },
-  -- { "itchyny/vim-cursorword", event = "VeryLazy" },
+  { "itchyny/vim-cursorword", event = "VeryLazy" },
   {
     "gen740/SmoothCursor.nvim",
     config = function()
@@ -80,102 +65,7 @@ return {
     event = "VeryLazy",
     init = function() vim.g.wordmotion_prefix = ';' end,
   },
-  {
-    "xlboy/flash.nvim",
-    event = "VeryLazy",
-    ---@type Flash.Config
-    opts = {
-      modes = {
-        search = {
-          enabled = false,
-        },
-        char = {
-          enabled = false,
-        },
-      },
-    },
-    keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      {
-        "S",
-        mode = { "n", "x", "o" },
-        function()
-          require("flash").jump {
-            search = { mode = "fuzzy" },
-          }
-        end,
-      },
-      {
-        "<leader>lv",
-        mode = { "n", "o", "x" },
-        function() require("flash").treesitter() end,
-        desc = "Flash Treesitter",
-      },
-      {
-        "<leader>k",
-        mode = { "n", "x", "o" },
-        function()
-          require("flash").jump {
-            search = { mode = "search", max_length = 0, forward = false, wrap = false, multi_window = false },
-            label = { after = { 0, 0 } },
-            pattern = "^",
-          }
-        end,
-      },
-      {
-        "<leader>j",
-        mode = { "n", "x", "o" },
-        function()
-          require("flash").jump {
-            search = { mode = "search", max_length = 0, forward = true, wrap = false, multi_window = false },
-            label = { after = { 0, 0 } },
-            pattern = "^",
-          }
-        end,
-      },
-    },
-  },
   { "wellle/targets.vim", event = "VeryLazy" },
-  {
-    "shellRaining/hlchunk.nvim",
-    event = "UIEnter",
-    init = function()
-      vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
-
-      require("hlchunk").setup {
-        chunk = {
-          enable = true,
-          use_treesitter = true,
-          style = {
-            { fg = "#73daca" },
-          },
-        },
-        indent = {
-          enable = false,
-          chars = { "." },
-          use_treesitter = false,
-          style = {
-            {},
-          },
-        },
-        blank = {
-          enable = false,
-        },
-        line_num = {
-          enable = false,
-        },
-      }
-    end,
-  },
-  {
-    "rmagatti/goto-preview",
-    event = "VeryLazy",
-    config = function()
-      require("goto-preview").setup {
-        default_mappings = true,
-      }
-    end,
-  },
   {
     "tomasky/bookmarks.nvim",
     -- after = "telescope.nvim",
@@ -205,17 +95,6 @@ return {
     end,
   },
   {
-    "dnlhc/glance.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("glance").setup {}
-      vim.keymap.set("n", "gD", "<CMD>Glance definitions<CR>")
-      vim.keymap.set("n", "gR", "<CMD>Glance references<CR>")
-      vim.keymap.set("n", "gY", "<CMD>Glance type_definitions<CR>")
-      vim.keymap.set("n", "gM", "<CMD>Glance implementations<CR>")
-    end,
-  },
-  {
     "xlboy/text-case.nvim",
     -- dir = "~/Desktop/xlboy/__open-source__/text-case.nvim",
     event = "BufRead",
@@ -234,14 +113,6 @@ return {
       )
       vim.api.nvim_set_keymap("n", "gai", "<cmd>TextCaseOpenTelescopeLSPChange<CR>", { desc = "Telescope LSP Change" })
     end,
-  },
-  {
-    "antosha417/nvim-lsp-file-operations",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-neo-tree/neo-tree.nvim",
-    },
-    config = function() require("lsp-file-operations").setup() end,
   },
   {
     "danielfalk/smart-open.nvim",

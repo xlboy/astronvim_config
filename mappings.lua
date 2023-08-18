@@ -36,6 +36,8 @@ return {
   n = {
     ["'d"] = { '"0d' },
     ["'c"] = { '"0c' },
+    ["<S-w>"] = { '3w' },
+    ["<S-b>"] = { '3b' },
     ["e"] = { function() inline_jump_percent() end},
     ["g1"] = { function() jump_to_specified_percent(0.25) end },
     ["g2"] = { function() jump_to_specified_percent(0.5) end },
@@ -95,6 +97,8 @@ return {
     ["<S-d>"] = { "20j" },
     ["'d"] = { '"0d' },
     ["'c"] = { '"0c' },
+    ["<S-w>"] = { '3w' },
+    ["<S-b>"] = { '3b' },
   },
   t = {},
 }

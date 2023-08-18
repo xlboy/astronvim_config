@@ -2,37 +2,8 @@ return {
   {
     "goolord/alpha-nvim",
     opts = function(_, opts)
-      local logo = {}
       opts.section.buttons.val = {}
       opts.section.header.val = {
--- "        .!PBBBBGBBBBBBBGGPJ7!.                              ",
--- "      :?PBB###BBBBBBGBBBGGPJ??^                             ",
--- "    ^JGB#####BBBBBBBGGPGGP5JJJ?.                            ",
--- "  .7YGBBBBBBBBGGGGGGGP55GG5?JYY7                            ",
--- "  ~J5GBBBBBBBGGGGP55PGP555YJ?JYY!.                          ",
--- "  ^JPGGBBBGBBGPGP55YYPGJYYYYJJYJYJ^:^..                     ",
--- "  ~PGPGBBBGBGGGPPYJJJJY5YYYYYYYYYYY?JY5Y?!^~^:..            ",
--- "  ?PPPGGBBGGP5PP5YJJJJ?JYY5YJYYYJ??7JGGGPBGGGGPYJ?7~:       ",
--- "  !PPPGPBBGGPYYJJYYYJJJJJYYYJJYYYJ??5BBBGB#BBBBGPPGGP5J!.   ",
--- "  .!JPGGBBGGP5YJJYYYYJJJ?JJJ???YYYJJGB#########BBGGGGBBGPY: ",
--- "    .7GGGPPGGP5YY55YJJJ77777?77?YYY5BBB################BBBP~",
--- "      ~?JYYPP55YYJYY55J??777?7!7?YYPPPB###############&##&#B",
--- "        .::~J5YYY?7????????7777?J5PPPPB#######BBB####&&##&##",
--- "            ~P5YYJ??777777!!!!7?YGPGGGB######BBBBB###&&##&#B",
--- "            .~7Y55YJJJ????77777?JP#BBBB######BBBB####&&&#&##",
--- "               :7JYJ??J????77777JJB##########BBB#####&&###&#",
--- "                  ....::^^7JJ?7?J5B##########BB######&&#####",
--- "                         :7Y5JJ5G###########BB########&#####",
--- "                      ^J5PGGBBBB############GB##B####B######",
--- "                      ~GGGBBBBB#####BB#####BB###B##BBB####B#",
--- "                       ~GGG################BB####BB##B#BGBBB",
--- "                       !BBB###########BB###BB###BBBBBGBBGGBB",
--- "                       JBGGB##########BB########BBBBBB#BPGBG",
--- "                       7BGGB#BB#######BBB###########BBBBPGBG",
--- "                        ?GGBBBBB#####BBBB##&&###BBBBBGBBPGBG",
--- "                         7GGGBGB######BB#######BBBBBBBBBPGBG",
--- "                          7PPGGGB############BBBGGBBBGGGPGBG",
--- "                           ?P5GGB############BBBBGGPPGGBPGBG",
         "                                                     .:^!^                    ~GJ                    :PP7.                  !!.                      .J55PGB#7                                               ",
         "                     .!?JY55?:  .!~.:~!J!       7YYPGB#&@&?               :::7#@&55Y!          7!:~~!7P@@G?????7JP7        :&@5.       ..            .7PB@&5J7!!!?Y!                                         ",
         "                     ^B#@&Y?P&B!^&&B5?&@B:      !B&&&@GJ7~.              ^B#&&@###BBJ         ^&&PYJ?Y7Y&?~7G7~5#&&!     !?5&&@B: :J5GG5GG7     .PP5PP55P&#J5GJ7P&&&7                                        ",
@@ -70,6 +41,11 @@ return {
       "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-media-files.nvim",
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+        config = function() require("telescope").load_extension "fzf" end,
+      }
     },
     config = function(plugin, opts)
       require "plugins.configs.telescope"(plugin, opts)
@@ -98,14 +74,6 @@ return {
       }
       return opts
     end,
-  },
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      config = function() require("telescope").load_extension "fzf" end,
-    },
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -163,3 +131,4 @@ return {
     enabled = false,
   },
 }
+

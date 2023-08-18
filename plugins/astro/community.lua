@@ -3,7 +3,6 @@ return {
   { import = "astrocommunity.colorscheme.tokyonight-nvim" },
   { import = "astrocommunity.media.pets-nvim" },
   { import = "astrocommunity.scrolling.nvim-scrollbar" },
-  { import = "astrocommunity.motion.flit-nvim" },
   { import = "astrocommunity.motion.mini-move" },
   { import = "astrocommunity.motion.mini-ai" },
 
@@ -19,4 +18,5 @@ return {
   { import = "astrocommunity.utility.nvim-toggler" },
   { import = "astrocommunity.utility.transparent-nvim" },
 }
+
 
