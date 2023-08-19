@@ -41,11 +41,35 @@ return {
       "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-media-files.nvim",
+      -- {
+      --   "imNel/monorepo.nvim",
+      --   config = function()
+      --     require("monorepo").setup({
+      --       -- Your config here!
+      --     })
+      --
+      --     require("telescope").load_extension("monorepo")
+      --   end,
+      --   dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+      -- },
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
         config = function() require("telescope").load_extension "fzf" end,
-      }
+      },
+      {
+        "ahmedkhalf/project.nvim",
+        event = "VeryLazy",
+        config = function()
+          require("project_nvim").setup {
+            manual_mode = true,
+            ignore_lsp = { "lua_ls" },
+            patterns = { ".git", "Makefile", "pnpm-workspace.yaml", "yarn.lock", "pnpm-lock.yaml" },
+
+          }
+          require('telescope').load_extension "projects"
+        end,
+      },
     },
     config = function(plugin, opts)
       require "plugins.configs.telescope"(plugin, opts)

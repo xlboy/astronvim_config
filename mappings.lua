@@ -54,13 +54,17 @@ return {
       function() require("telescope.builtin").buffers() end,
       desc = "Find buffers",
     },
+    ["<leader>fp"] = {
+      function()
+        require('telescope').extensions.projects.projects{} 
+      end,
+    },
     ["<S-h>"] = { "^" },
     ["<S-l>"] = { "$" },
     ["<S-k>"] = { "8k" },
     ["<S-j>"] = { "8j" },
     ["<S-u>"] = { "20k" },
     ["<S-d>"] = { "20j" },
-    ["<leader>fp"] = { ":Telescope smart_open<CR>" },
     ["<leader><leader>"] = { ":Telescope smart_open<CR>" },
     ["<C-c>"] = { "<cmd> %y+ <cr>", desc = "copy file" },
     ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
