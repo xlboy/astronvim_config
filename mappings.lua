@@ -50,7 +50,7 @@ return {
       function() require("telescope.builtin").live_grep() end,
       desc = "Find words",
     },
-    ["<leader>oc"] = {
+    ["<C-r>"] = {
       function() vim.fn.system('open -R ' .. vim.api.nvim_buf_get_name(0)) end
     },
     ["<leader>,"] = {
@@ -59,7 +59,7 @@ return {
     },
     ["<leader>fp"] = {
       function()
-        require('telescope').extensions.projects.projects{} 
+        require('telescope').extensions.projects.projects {}
       end,
     },
     ["<S-h>"] = { "^" },

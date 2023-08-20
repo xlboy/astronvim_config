@@ -60,7 +60,8 @@ return {
         end,
       },
       {
-        "jay-babu/project.nvim",
+        "xlboy/project.nvim",
+        -- dir = "~/Desktop/xlboy-project/__open-source__/project.nvim",
         event = "VeryLazy",
         config = function()
           require("project_nvim").setup({
@@ -156,8 +157,7 @@ return {
           vim.fn.execute("!open -R " .. node.path)
         end
       end
-      opts.window.mappings["<space>"] = true
-      opts.window.mappings["<leader>rif"] = "reveal_in_finder"
+      opts.window.mappings["<C-r>"] = "reveal_in_finder"
 
       return opts
     end,
