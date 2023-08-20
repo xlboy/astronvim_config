@@ -30,7 +30,7 @@ return {
         "              ^5B&&&BPJ7~:   7&@#^     :#@#####@B^  .. .7#@@J  75GBB#BGY7^7B&P?           :Y#BB##GY&B               ~&@7 .?7   5@@7  .7!    ~PY^   J@&!    ?&&B:             :#@G                       ",
         "              .~??!:    :5J?P@@G^       ^57^:557.   :GB#@#B7   ?5Y7!!?P&@&#&#PPPPPPP5Y? :YB5~  .!P&@&PYJ7!!~^:.     ^&@?    ^5P&&G.        .7:     .P@#PGB#@@@7          . .~G@&7                       ",
         "                         Y#B5?!.                     ^J!~:             :~?YPPGBBBBG5~. .!~.       :75B#&@@@@#PP5:    7!.    .?Y!^                   .JPYYJ?7!~.          !G#&#P!                        ",
-        "                          .                                                                           .:^~!!:  .                                                          :!!.                          "
+        "                          .                                                                           .:^~!!:  .                                                          :!!.                          ",
       }
       return opts
     end,
@@ -55,29 +55,30 @@ return {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
-        config = function() require("telescope").load_extension "fzf" end,
+        config = function()
+          require("telescope").load_extension("fzf")
+        end,
       },
       {
-        "ahmedkhalf/project.nvim",
+        "jay-babu/project.nvim",
         event = "VeryLazy",
         config = function()
-          require("project_nvim").setup {
+          require("project_nvim").setup({
             manual_mode = true,
             ignore_lsp = { "lua_ls" },
             patterns = { ".git", "Makefile", "pnpm-workspace.yaml", "yarn.lock", "pnpm-lock.yaml" },
-
-          }
-          require('telescope').load_extension "projects"
+          })
+          require("telescope").load_extension("projects")
         end,
       },
     },
     config = function(plugin, opts)
-      require "plugins.configs.telescope"(plugin, opts)
-      local telescope = require "telescope"
-      telescope.load_extension "media_files"
+      require("plugins.configs.telescope")(plugin, opts)
+      local telescope = require("telescope")
+      telescope.load_extension("media_files")
     end,
     opts = function(_, opts)
-      local actions = require "telescope.actions"
+      local actions = require("telescope.actions")
       opts.enable_git_status = false
       opts.defaults.mappings = {
         i = {
@@ -94,7 +95,7 @@ return {
           match_algorithm = "fzf",
           disable_devicons = false,
           cwd_only = true,
-        }
+        },
       }
       return opts
     end,
@@ -117,17 +118,17 @@ return {
       "hrsh7th/cmp-emoji",
     },
     opts = function(_, opts)
-      local cmp = require "cmp"
+      local cmp = require("cmp")
       opts.completion = {
         completeopt = "menu,menuone,noinsert",
       }
-      opts.sources = cmp.config.sources {
+      opts.sources = cmp.config.sources({
         { name = "nvim_lsp", priority = 1000 },
         { name = "luasnip", priority = 750 },
         { name = "buffer", priority = 500 },
         { name = "path", priority = 250 },
         { name = "emoji", priority = 700 },
-      }
+      })
       return opts
     end,
   },
@@ -141,18 +142,28 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      source_selector = {
+    opts = function(_, opts)
+      opts.source_selector = {
         winbar = false,
         sources = {
-          { source = "filesystem" }
-        }
+          { source = "filesystem" },
+        },
       }
-    }
+
+      opts.commands["reveal_in_finder"] = function(state)
+        local node = state.tree:get_node()
+        if node then
+          vim.fn.execute("!open -R " .. node.path)
+        end
+      end
+      opts.window.mappings["<space>"] = true
+      opts.window.mappings["<leader>rif"] = "reveal_in_finder"
+
+      return opts
+    end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
     enabled = false,
   },
 }
-

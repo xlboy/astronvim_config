@@ -50,6 +50,9 @@ return {
       function() require("telescope.builtin").live_grep() end,
       desc = "Find words",
     },
+    ["<leader>oc"] = {
+      function() vim.fn.system('open -R ' .. vim.api.nvim_buf_get_name(0)) end
+    },
     ["<leader>,"] = {
       function() require("telescope.builtin").buffers() end,
       desc = "Find buffers",
