@@ -1,36 +1,31 @@
 return {
-  "jose-elias-alvarez/null-ls.nvim",
-  opts = function(_, config)
-    local null_ls = require "null-ls"
-
-    -- Check supported formatters and linters
-    -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
-    -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-    config.sources = {
-      null_ls.builtins.diagnostics.eslint
-    }
-    return config -- return final config table
-  end,
   {
     "jay-babu/mason-null-ls.nvim",
-    opts = function(_)
-      local null_ls = require "null-ls"
-      local b = null_ls.builtins
-      return {
-        handlers = {
-          prettierd = function()
-            null_ls.register(b.formatting.prettierd.with {
-              filetypes = { json = false },
-              condition = function(u)
-                return u.root_has_file "package.json"
-                  or u.root_has_file ".prettierrc"
-                  or u.root_has_file ".prettierrc.json"
-                  or u.root_has_file ".prettierrc.js"
-              end,
-            })
-          end,
-        },
-      }
-    end,
+    opts = {
+      handlers = {
+        prettier = function()
+          require("null-ls").register(require("null-ls").builtins.formatting.prettier.with({
+            condition = function(u)
+              return u.root_has_file("package.json")
+                or u.root_has_file(".prettierrc")
+                or u.root_has_file(".prettierrc.json")
+                or u.root_has_file(".prettierrc.js")
+            end,
+          }))
+        end,
+        eslint_d = function()
+          require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with({
+            condition = function(u)
+              return u.root_has_file(".eslintrc")
+                or u.root_has_file(".eslintrc.json")
+                or u.root_has_file(".eslintrc.js")
+                or u.root_has_file(".eslintrc.cjs")
+                or u.root_has_file(".eslintrc.yaml")
+                or u.root_has_file(".eslintrc.yml")
+            end,
+          }))
+        end,
+      },
+    },
   },
 }
