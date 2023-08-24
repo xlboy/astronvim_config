@@ -59,19 +59,6 @@ return {
           require("telescope").load_extension("fzf")
         end,
       },
-      {
-        "xlboy/project.nvim",
-        -- dir = "~/Desktop/xlboy-project/__open-source__/project.nvim",
-        event = "VeryLazy",
-        config = function()
-          require("project_nvim").setup({
-            manual_mode = true,
-            ignore_lsp = { "lua_ls" },
-            patterns = { ".git", "Makefile", "pnpm-workspace.yaml", "yarn.lock", "pnpm-lock.yaml" },
-          })
-          require("telescope").load_extension("projects")
-        end,
-      },
     },
     config = function(plugin, opts)
       require("plugins.configs.telescope")(plugin, opts)
@@ -138,27 +125,6 @@ return {
     "rebelot/heirline.nvim",
     opts = function(_, opts)
       opts.winbar = nil
-      return opts
-    end,
-  },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = function(_, opts)
-      opts.source_selector = {
-        winbar = false,
-        sources = {
-          { source = "filesystem" },
-        },
-      }
-
-      opts.commands["reveal_in_finder"] = function(state)
-        local node = state.tree:get_node()
-        if node then
-          vim.fn.execute("!open -R " .. node.path)
-        end
-      end
-      opts.window.mappings["<C-r>"] = "reveal_in_finder"
-
       return opts
     end,
   },

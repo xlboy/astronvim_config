@@ -1,66 +1,83 @@
-local jump_to_specified_percent= function(percent)
-  local line = vim.api.nvim_get_current_line()
-  local trimmed_line = string.gsub(line, "^%s+", "")
-  local space_len = string.len(line) - string.len(trimmed_line)
-  local target_column = math.floor(#trimmed_line * percent) + space_len
-  local current_line = vim.api.nvim_win_get_cursor(0)[1]
-  vim.api.nvim_win_set_cursor(0, {current_line, target_column})
-end
-
-local inline_jump_percent = function()
-  local line = vim.api.nvim_get_current_line()
-  local trimmed_line = string.gsub(line, "^%s+", "")
-  local space_len = string.len(line) - string.len(trimmed_line)
-  local percent_column_map = {
-    ["25%"] = math.floor(#trimmed_line * 0.25) + space_len,
-    ["50%"] = math.floor(#trimmed_line * 0.5) + space_len,
-    ["75%"] = math.floor(#trimmed_line * 0.75) + space_len
-  }
-  local cursor = vim.api.nvim_win_get_cursor(0)
-  local current_line = cursor[1]
-  local current_column = cursor[2]
-  local target_column;
-  if (current_column < percent_column_map["25%"]) then
-    target_column = percent_column_map["25%"]
-  elseif (current_column < percent_column_map["50%"]) then
-    target_column = percent_column_map["50%"]
-  elseif (current_column >= percent_column_map["75%"]) then
-    target_column = percent_column_map["25%"]
-  else
-    target_column = percent_column_map["75%"]
-  end
-  vim.api.nvim_win_set_cursor(0, {current_line, target_column})
-end
+local tBuiltin = require("telescope.builtin")
+local tExtensions = require("telescope").extensions
 
 return {
   n = {
-    ["ZZ"] = { '' },
+    ["ZZ"] = { "" },
     ["'d"] = { '"0d' },
     ["'c"] = { '"0c' },
-    ["<S-w>"] = { '3w' },
-    ["<S-b>"] = { '3b' },
-    ["e"] = { function() inline_jump_percent() end},
-    ["g1"] = { function() jump_to_specified_percent(0.25) end },
-    ["g2"] = { function() jump_to_specified_percent(0.5) end },
-    ["g3"] = { function() jump_to_specified_percent(0.75) end },
+    ["<S-w>"] = { "3w" },
+    ["<S-b>"] = { "3b" },
     ["<leader>tt"] = { "<cmd>:TodoTelescope<CR>" },
     ["<leader>fml"] = { "<cmd>CellularAutomaton make_it_rain<CR>" },
     ["<leader>fmk"] = { "<cmd>CellularAutomaton game_of_life<CR>" },
     ["<leader>all"] = { "ggVG" },
-    ["<leader>/"] = {
-      function() require("telescope.builtin").live_grep() end,
-      desc = "Find words",
-    },
+    ["<leader>/"] = { tBuiltin.live_grep },
     ["<C-r>"] = {
-      function() vim.fn.system('open -R ' .. vim.api.nvim_buf_get_name(0)) end
+      function()
+        vim.fn.system("open -R " .. vim.api.nvim_buf_get_name(0))
+      end,
     },
     ["<leader>,"] = {
-      function() require("telescope.builtin").buffers() end,
+      function()
+        local entry_display = require("telescope.pickers.entry_display")
+
+        local displayer = entry_display.create({
+          separator = " ",
+          items = {
+            { width = 30 },
+            { remaining = true },
+          },
+        })
+        local function make_display(entry)
+          local dir_path = entry.is_root_file and "" or entry.dir_path
+          return displayer({ entry.name, { dir_path, "Comment" } })
+        end
+        require("telescope.builtin").buffers({
+          previewer = false,
+          layout_config = {
+            width = 70,
+            height = 25,
+          },
+          path_display = function(opts, path)
+            local tail = require("telescope.utils").path_tail(path)
+            return string.format("%s (%s)", tail, vim.fn.fnamemodify(path, ":h")), { { { 1, #tail }, "Constant" } }
+          end,
+          -- entry_maker = function(entry)
+          --   local file_name = vim.fn.fnamemodify(entry.info.name, ":t")
+          --   local dir_path = vim.fn.fnamemodify(entry.info.name, ":h")
+          --   local current_cwd = vim.fn.getcwd()
+          --   local relative_dir_path = vim.fn.fnamemodify(dir_path, ":~:." .. current_cwd .. ":.")
+          --   local is_root_file = dir_path == current_cwd
+          --   local ordinal = file_name .. " " .. relative_dir_path
+          --   if is_root_file then
+          --     ordinal = file_name
+          --   end
+          --   print(dir_path .. "--" .. current_cwd)
+          --   print(is_root_file)
+          --   print(ordinal)
+          --
+          --   return {
+          --     display = make_display,
+          --     name = file_name,
+          --     dir_path = relative_dir_path,
+          --     is_root_file = is_root_file,
+          --     value = entry,
+          --     ordinal = ordinal,
+          --   }
+          -- end,
+        })
+      end,
       desc = "Find buffers",
     },
     ["<leader>fp"] = {
       function()
-        require('telescope').extensions.projects.projects {}
+        tExtensions.projects.projects({
+          layout_config = {
+            width = 110,
+            height = 25,
+          },
+        })
       end,
     },
     ["<S-h>"] = { "^" },
@@ -69,27 +86,36 @@ return {
     ["<S-j>"] = { "8j" },
     ["<S-u>"] = { "20k" },
     ["<S-d>"] = { "20j" },
-    ["<leader><leader>"] = { ":Telescope smart_open<CR>" },
+    ["<leader><leader>"] = {
+      function()
+        tExtensions.smart_open.smart_open({
+          previewer = false,
+          layout_config = {
+            width = 80,
+            height = 20,
+          },
+        })
+      end,
+    },
     ["<C-c>"] = { "<cmd> %y+ <cr>", desc = "copy file" },
     ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>bD"] = {
       function()
-        require("astronvim.utils.status").heirline.buffer_picker(
-          function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
-        )
+        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr)
+          require("astronvim.utils.buffer").close(bufnr)
+        end)
       end,
       desc = "Pick to close",
     },
-    -- tables with the `name` key will be registered with which-key if it's installed
-    -- this is useful for naming menus
-    ["<leader>b"] = { name = "Buffers" },
     ["]w"] = {
-      function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
-      desc = "Next buffer",
+      function()
+        require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
+      end,
     },
     ["[w"] = {
-      function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
-      desc = "Previous tab",
+      function()
+        require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
+      end,
     },
   },
   i = {
@@ -105,8 +131,8 @@ return {
     ["<S-d>"] = { "20j" },
     ["'d"] = { '"0d' },
     ["'c"] = { '"0c' },
-    ["<S-w>"] = { '3w' },
-    ["<S-b>"] = { '3b' },
+    ["<S-w>"] = { "3w" },
+    ["<S-b>"] = { "3b" },
   },
   t = {},
 }

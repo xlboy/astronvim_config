@@ -60,10 +60,6 @@ return {
       },
     },
     config = function()
-      -- vim.keymap.set("n", "<Leader>;", api.pick)
-      -- vim.keymap.set("n", "[c", api.goto_context_start)
-      -- vim.keymap.set("n", "]c", api.select_next_context)
-
       require("dropbar").setup({
         sources = {
           path = {
