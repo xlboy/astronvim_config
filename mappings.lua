@@ -70,6 +70,7 @@ return {
       end,
       desc = "Find buffers",
     },
+    ["<leader>fn"] = { "<CMD>GetCurrentFunctions<CR>" },
     ["<leader>fp"] = {
       function()
         tExtensions.projects.projects({

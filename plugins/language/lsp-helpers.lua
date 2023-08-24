@@ -30,46 +30,8 @@ return {
     end,
   },
   {
-    "Bekaboo/dropbar.nvim",
-    enabled = false,
+    "eckon/treesitter-current-functions",
     event = "VeryLazy",
-    keys = {
-      {
-        "<Leader>;",
-        function()
-          local api = require("dropbar.api")
-          api.pick()
-        end,
-        desc = "Pick from a list of options",
-      },
-      {
-        "[c",
-        function()
-          local api = require("dropbar.api")
-          api.goto_context_start()
-        end,
-        desc = "Go to the start of the current context",
-      },
-      {
-        "]c",
-        function()
-          local api = require("dropbar.api")
-          api.goto_context_end()
-        end,
-        desc = "Go to the next context",
-      },
-    },
-    config = function()
-      require("dropbar").setup({
-        sources = {
-          path = {
-            relative_to = function()
-              return vim.api.nvim_buf_get_name(0)
-            end,
-          },
-        },
-      })
-    end,
-    -- config = true,
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope.nvim" },
   },
 }

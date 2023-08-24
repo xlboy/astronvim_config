@@ -47,13 +47,18 @@ return {
             use_cwd = false,
             sorting = "frecency",
           },
+          ["command_center#command_center"] = {
+            disable = false,
+            use_cwd = false,
+            sorting = "recent",
+          },
         },
       })
     end,
   },
   {
     "xlboy/project.nvim",
-    -- dir = "~/Desktop/xlboy-project/__open-source__/project.nvim",
+    -- dir = "~/Desktop/xlboy/__open-source__/project.nvim",
     event = "VeryLazy",
     config = function()
       require("project_nvim").setup({
