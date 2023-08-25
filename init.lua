@@ -1,38 +1,5 @@
-vim.opt.backup = false
-
-function backup_current_file()
-    local current_file = vim.api.nvim_buf_get_name(0)
-    local current_cwd = vim.fn.getcwd()
-    local relative_path = vim.fn.fnamemodify(current_file, ':~:.' .. current_cwd .. ':.')
-    local backup_target_path = current_cwd .. '/.nvim-history/' .. relative_path .. '-' .. vim.fn.strftime('%m-%d %H:%M:%S')
-    local backup_target_dir = string.match(backup_target_path, "(.-)[^\\/]+$")
-    vim.fn.system('mkdir -p "' .. backup_target_dir .. '"')
-    vim.fn.system('cp "' .. current_file .. '" "' .. backup_target_path .. '"')
-end
-
-vim.api.nvim_create_autocmd('BufWritePre', {
-  group = vim.api.nvim_create_augroup('timestamp_backupext', { clear = true }),
-  desc = '文件保存前将文件的前一份记录复制到备份目录下',
-  pattern = '*',
-  callback = backup_current_file
-});
-
-if vim.g.neovide then
-  local alpha = function() return string.format("%x", math.floor(255 * vim.g.transparency or 0.8)) end
-
-  vim.g.neovide_padding_right = 5
-  vim.g.neovide_padding_left = 5
-  vim.o.guifont = "ComicShannsMono Nerd Font Mono:h14"
-  vim.g.neovide_transparency = 0.0
-  vim.g.transparency = 0.8
-  vim.g.neovide_background_color = "#0f1117" .. alpha()
-  vim.g.neovide_cursor_animate_in_insert_mode = true
-  vim.g.neovide_input_use_logo = 1
-  vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-end
+require("user.scripts.backup-file")
+require("user.scripts.init-neovide")
 
 return {
   -- Configure AstroNvim updates
@@ -65,12 +32,11 @@ return {
   lsp = {
     mappings = {
       n = {
-        gh = { function() vim.lsp.buf.hover() end, desc = "Hover symbol details" },
+        gh = { vim.lsp.buf.hover },
         K = false,
       },
     },
     formatting = {
-      -- control auto formatting on save
       format_on_save = false,
       disabled = { -- disable formatting capabilities for the listed language servers
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code

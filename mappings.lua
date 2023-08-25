@@ -92,7 +92,7 @@ return {
         tExtensions.smart_open.smart_open({
           previewer = false,
           layout_config = {
-            width = 80,
+            width = 110,
             height = 20,
           },
         })
