@@ -28,7 +28,6 @@ return {
   },
   {
     "echasnovski/mini.animate",
-    version = "*",
     event = "VeryLazy",
     config = function()
       require("mini.animate").setup({

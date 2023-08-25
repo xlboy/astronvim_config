@@ -35,7 +35,7 @@ return {
         desc = "Copy current file path (absolute)",
         cmd = function()
           local file_path = vim.api.nvim_buf_get_name(0)
-          vim.fn.system("echo -n" .. file_path .. " | pbcopy")
+          vim.fn.system("echo -n " .. file_path .. " | pbcopy")
         end,
       },
       {

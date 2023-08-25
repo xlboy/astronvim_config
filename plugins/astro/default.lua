@@ -36,59 +36,6 @@ return {
     end,
   },
   {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-lua/popup.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope-media-files.nvim",
-      -- {
-      --   "imNel/monorepo.nvim",
-      --   config = function()
-      --     require("monorepo").setup({
-      --       -- Your config here!
-      --     })
-      --
-      --     require("telescope").load_extension("monorepo")
-      --   end,
-      --   dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-      -- },
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-        config = function()
-          require("telescope").load_extension("fzf")
-        end,
-      },
-    },
-    config = function(plugin, opts)
-      require("plugins.configs.telescope")(plugin, opts)
-      local telescope = require("telescope")
-      telescope.load_extension("media_files")
-    end,
-    opts = function(_, opts)
-      local actions = require("telescope.actions")
-      opts.enable_git_status = false
-      opts.defaults.mappings = {
-        i = {
-          ["<C-n>"] = actions.move_selection_next,
-          ["<C-p>"] = actions.move_selection_previous,
-          ["<C-j>"] = actions.cycle_history_next,
-          ["<C-k>"] = actions.cycle_history_prev,
-        },
-      }
-      opts.extensions = {
-        smart_open = {
-          show_scores = false,
-          ignore_patterns = { "*.git/*", "*/tmp/*" },
-          match_algorithm = "fzf",
-          disable_devicons = false,
-          cwd_only = true,
-        },
-      }
-      return opts
-    end,
-  },
-  {
     "lewis6991/gitsigns.nvim",
     opts = {
       current_line_blame = true,

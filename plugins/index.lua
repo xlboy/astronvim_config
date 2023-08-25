@@ -7,6 +7,7 @@ return {
   require "user.plugins.language.treesitter",
   require "user.plugins.language.lsp-helpers",
 
+  require "user.plugins.infrastructure.telescope",
   require "user.plugins.infrastructure.search-replace",
   require "user.plugins.infrastructure.commands",
   require "user.plugins.infrastructure.base",

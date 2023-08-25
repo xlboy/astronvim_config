@@ -33,13 +33,10 @@ return {
     keys = {
       {
         "<leader>sr",
-        function()
-          require("ssr").open()
-        end,
+        function() require("ssr").open() end,
         desc = "Search and replace",
       },
     },
-    -- Calling setup is optional.
     config = function()
       require("ssr").setup({
         border = "rounded",
