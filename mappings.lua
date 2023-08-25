@@ -93,7 +93,7 @@ return {
           previewer = false,
           layout_config = {
             width = 110,
-            height = 20,
+            height = 25,
           },
         })
       end,
