@@ -11,6 +11,7 @@ return {
   { import = "astrocommunity.pack.typescript-all-in-one" },
   { import = "astrocommunity.pack.json" },
   { import = "astrocommunity.pack.html-css" },
+  { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.lua" },
 
   { import = "astrocommunity.utility.telescope-fzy-native-nvim" },

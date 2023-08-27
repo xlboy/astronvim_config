@@ -108,12 +108,12 @@ return {
       end,
       desc = "Pick to close",
     },
-    ["]w"] = {
+    ["}"] = {
       function()
         require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
       end,
     },
-    ["[w"] = {
+    ["{"] = {
       function()
         require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
       end,

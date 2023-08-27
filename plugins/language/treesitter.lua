@@ -10,6 +10,7 @@ return {
       "bash",
       "scss",
       "vim",
+      "markdown"
     })
     opts.incremental_selection = {
       enable = true,

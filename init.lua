@@ -1,5 +1,7 @@
 require("user.scripts.backup-file")
-require("user.scripts.init-neovide")
+-- require("user.scripts.init-neovide")
+require("user.scripts.roll-motion")
+require("user.scripts.fast-cursor-move")
 
 return {
   -- Configure AstroNvim updates
@@ -32,6 +34,7 @@ return {
   lsp = {
     mappings = {
       n = {
+        gd = false,
         gh = { vim.lsp.buf.hover },
         K = false,
       },

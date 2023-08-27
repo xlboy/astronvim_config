@@ -34,4 +34,11 @@ return {
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope.nvim" },
   },
+  -- {
+  --   "KostkaBrukowa/definition-or-references.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     vim.keymap.set("n", "gd", require("definition-or-references").definition_or_references, { silent = true })
+  --   end,
+  -- },
 }

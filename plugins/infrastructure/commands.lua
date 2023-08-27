@@ -44,9 +44,13 @@ return {
           local file_path = vim.api.nvim_buf_get_name(0)
           local relative_path = vim.fn.fnamemodify(file_path, ":~:." .. vim.fn.getcwd() .. ":.")
           local current_line = vim.api.nvim_win_get_cursor(0)[1]
-          local file_path_and_line = relative_path .. "#" .. current_line
+          local file_path_and_line = relative_path .. ":" .. current_line
           vim.fn.system("echo -n " .. file_path_and_line .. " | pbcopy")
         end,
+      },
+      {
+        desc = "Merge 2 lines",
+        cmd = "<CMD>join<CR>",
       },
       {
         desc = "Restart lsp server",

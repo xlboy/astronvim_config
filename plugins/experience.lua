@@ -18,8 +18,6 @@ return {
             { cursor = "💞" },
             { cursor = "💖" },
             { cursor = "💝" },
-            -- { cursor = "💚", texthl = "SmoothCursorPurple" },
-            -- { cursor = "💙", texthl = "SmoothCursorPurple" },
           },
         },
       })
@@ -28,6 +26,7 @@ return {
   },
   {
     "echasnovski/mini.animate",
+    enabled = false,
     event = "VeryLazy",
     config = function()
       require("mini.animate").setup({

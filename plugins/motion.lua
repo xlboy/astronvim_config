@@ -18,18 +18,9 @@ return {
         "s",
         mode = { "n", "x", "o" },
         function()
-          require("flash").jump()
+          require("flash").jump({ search = { mode = "fuzzy" } })
         end,
         desc = "Flash",
-      },
-      {
-        "S",
-        mode = { "n", "x", "o" },
-        function()
-          require("flash").jump({
-            search = { mode = "fuzzy" },
-          })
-        end,
       },
       {
         "<leader>ssv",
