@@ -2,6 +2,7 @@ require("user.scripts.backup-file")
 -- require("user.scripts.init-neovide")
 require("user.scripts.roll-motion")
 require("user.scripts.fast-cursor-move")
+require("user.scripts.init-cwd-session")
 
 return {
   -- Configure AstroNvim updates

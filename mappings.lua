@@ -13,11 +13,6 @@ return {
     ["<leader>fmk"] = { "<cmd>CellularAutomaton game_of_life<CR>" },
     ["<leader>all"] = { "ggVG" },
     ["<leader>/"] = { tBuiltin.live_grep },
-    ["<C-r>"] = {
-      function()
-        vim.fn.system("open -R " .. vim.api.nvim_buf_get_name(0))
-      end,
-    },
     ["<leader>,"] = {
       function()
         local entry_display = require("telescope.pickers.entry_display")

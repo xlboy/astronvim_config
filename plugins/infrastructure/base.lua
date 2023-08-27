@@ -33,7 +33,6 @@ return {
       require("auto-session").setup({
         auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
       })
-      vim.keymap.set("n", "<leader>ssr", "<CMD>SessionRestore<CR>")
       vim.api.nvim_create_autocmd("DirChanged", {
         callback = function()
           vim.loop.new_timer():start(

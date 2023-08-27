@@ -75,6 +75,12 @@ return {
           vim.cmd([[TSEnable highlight]])
         end,
       },
+      {
+        desc = "Open the current file in finder",
+        cmd = function()
+          vim.fn.system("open -R " .. vim.api.nvim_buf_get_name(0))
+        end,
+      },
     }, { mode = command_center.mode.ADD })
 
     telescope.setup({

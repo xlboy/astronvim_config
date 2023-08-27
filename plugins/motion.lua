@@ -1,6 +1,7 @@
 return {
   {
-    "xlboy/flash.nvim",
+    -- "xlboy/flash.nvim",
+    dir = "~/Desktop/xlboy/__open-source__/flash.nvim",
     event = "VeryLazy",
     ---@type Flash.Config
     opts = {
@@ -9,7 +10,9 @@ return {
           enabled = false,
         },
         char = {
-          enabled = false,
+          -- enabled = false,
+          multi_line = false,
+          max_length = 10,
         },
       },
     },
@@ -18,7 +21,12 @@ return {
         "s",
         mode = { "n", "x", "o" },
         function()
-          require("flash").jump({ search = { mode = "fuzzy" } })
+          require("flash").jump({
+            search = {
+              multi_window = false,
+              mode = "fuzzy",
+            },
+          })
         end,
         desc = "Flash",
       },
@@ -67,26 +75,26 @@ return {
       vim.g.wordmotion_prefix = ";"
     end,
   },
-  {
-    "ggandor/flit.nvim",
-    keys = function()
-      ---@type LazyKeys[]
-      local ret = {}
-      for _, key in ipairs({ "f", "F", "t", "T" }) do
-        ret[#ret + 1] = { key, mode = { "n", "x", "o" }, desc = key }
-      end
-      return ret
-    end,
-    opts = {
-      labeled_modes = "nx",
-      multiline = false,
-      opts = {},
-    },
-    dependencies = {
-      "ggandor/leap.nvim",
-      dependencies = {
-        "tpope/vim-repeat",
-      },
-    },
-  },
+  -- {
+  --   "ggandor/flit.nvim",
+  --   keys = function()
+  --     ---@type LazyKeys[]
+  --     local ret = {}
+  --     for _, key in ipairs({ "f", "F", "t", "T" }) do
+  --       ret[#ret + 1] = { key, mode = { "n", "x", "o" }, desc = key }
+  --     end
+  --     return ret
+  --   end,
+  --   opts = {
+  --     labeled_modes = "nx",
+  --     multiline = false,
+  --     opts = {},
+  --   },
+  --   dependencies = {
+  --     "ggandor/leap.nvim",
+  --     dependencies = {
+  --       "tpope/vim-repeat",
+  --     },
+  --   },
+  -- },
 }
