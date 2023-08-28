@@ -1,100 +1,107 @@
-return {
-  "FeiyouG/command_center.nvim",
-  dependencies = { "nvim-telescope/telescope.nvim" },
-  keys = {
-    {
-      "<leader>pp",
-      function()
-        vim.cmd([[Telescope command_center]])
-      end,
-      desc = "Command Center",
-    },
+local CAT = {
+  FS = "📁 fs",
+  EDIT = "✍️  edit",
+  BUF = "🖥️ buf",
+  WINDOW = "🏋️ window",
+  LSP = "💿 lsp",
+  GIT = "👫 git",
+}
+
+local commands = {
+  {
+    desc = "Copy current file name",
+    cmd = function()
+      local file_path = vim.api.nvim_buf_get_name(0)
+      local file_name = vim.fn.fnamemodify(file_path, ":t")
+      vim.fn.system("echo -n " .. file_name .. " | pbcopy")
+    end,
+    cat = CAT.FS,
   },
+  {
+    desc = "Copy current file path (absolute)",
+    cmd = function()
+      local file_path = vim.api.nvim_buf_get_name(0)
+      vim.fn.system("echo -n " .. file_path .. " | pbcopy")
+    end,
+    cat = CAT.FS,
+  },
+  {
+    desc = "Copy current file path & line (relative to cwd)",
+    cmd = function()
+      local file_path = vim.api.nvim_buf_get_name(0)
+      local relative_path = vim.fn.fnamemodify(file_path, ":~:." .. vim.fn.getcwd() .. ":.")
+      local current_line = vim.api.nvim_win_get_cursor(0)[1]
+      local file_path_and_line = relative_path .. ":" .. current_line
+      vim.fn.system("echo -n " .. file_path_and_line .. " | pbcopy")
+    end,
+    cat = CAT.FS,
+  },
+  {
+    desc = "Open the current file in finder",
+    cmd = function()
+      vim.fn.system("open -R " .. vim.api.nvim_buf_get_name(0))
+    end,
+    cat = CAT.FS,
+  },
+  {
+    desc = "Merge 2 lines",
+    cmd = "<CMD>join<CR>",
+    cat = CAT.EDIT,
+  },
+  {
+    desc = "Restart lsp server",
+    cmd = "<CMD>LspRestart<CR>",
+    cat = CAT.LSP,
+  },
+  {
+    desc = "Refresh TSHighlight",
+    cmd = function()
+      vim.cmd([[TSDisable highlight]])
+      vim.cmd([[TSEnable highlight]])
+    end,
+    cat = CAT.LSP,
+  },
+  {
+    desc = "Reload Buffer",
+    cmd = "<CMD>bufdo e<CR>zz",
+    cat = CAT.BUF,
+  },
+  {
+    desc = "Reload Window",
+    cmd = "<CMD>windo e<CR>zz",
+    cat = CAT.WINDOW,
+  },
+  {
+    desc = "Advanced git search",
+    cmd = "<CMD>AdvancedGitSearch<CR>",
+    cat = CAT.GIT,
+  },
+}
 
-  lazy = true,
+return {
+  "FeiyouG/commander.nvim",
+  dependencies = {
+    "nvim-telescope/telescope.nvim",
+  },
+  keys = {
+    { "<leader>pp", "<CMD>Telescope commander<CR>", mode = "n" },
+  },
   config = function()
-    local telescope = require("telescope")
-    local command_center = require("command_center")
-
-    local plugins = require("lazy").plugins()
-
-    for _, plugin in ipairs(plugins) do
-      if plugin.command_center then
-        -- only add for enabled plugins
-        -- copied from require('lazy.core.plugin').Spec:fix_disabled
-        local enabled = not (plugin.enabled == false or (type(plugin.enabled) == "function" and not plugin.enabled()))
-
-        if enabled then
-          command_center.add(plugin.command_center)
-        end
-      end
-    end
-
-    command_center.add({
-      {
-        desc = "Copy current file path (absolute)",
-        cmd = function()
-          local file_path = vim.api.nvim_buf_get_name(0)
-          vim.fn.system("echo -n " .. file_path .. " | pbcopy")
-        end,
+    require("commander").setup({
+      components = {
+        "CAT",
+        "DESC",
       },
-      {
-        desc = "Copy current file path & line (relative to cwd)",
-        cmd = function()
-          local file_path = vim.api.nvim_buf_get_name(0)
-          local relative_path = vim.fn.fnamemodify(file_path, ":~:." .. vim.fn.getcwd() .. ":.")
-          local current_line = vim.api.nvim_win_get_cursor(0)[1]
-          local file_path_and_line = relative_path .. ":" .. current_line
-          vim.fn.system("echo -n " .. file_path_and_line .. " | pbcopy")
-        end,
-      },
-      {
-        desc = "Merge 2 lines",
-        cmd = "<CMD>join<CR>",
-      },
-      {
-        desc = "Restart lsp server",
-        cmd = "<CMD>LspRestart<CR>",
-      },
-      {
-        desc = "Reload Buffer",
-        cmd = "<CMD>bufdo e<CR>zz",
-      },
-      {
-        desc = "Reload Window",
-        cmd = "<CMD>windo e<CR>zz",
-      },
-      {
-        desc = "Advanced git search",
-        cmd = "<CMD>AdvancedGitSearch<CR>",
-      },
-      {
-        desc = "Refresh TSHighlight",
-        cmd = function()
-          vim.cmd([[TSDisable highlight]])
-          vim.cmd([[TSEnable highlight]])
-        end,
-      },
-      {
-        desc = "Open the current file in finder",
-        cmd = function()
-          vim.fn.system("open -R " .. vim.api.nvim_buf_get_name(0))
-        end,
-      },
-    }, { mode = command_center.mode.ADD })
-
-    telescope.setup({
-      extensions = {
-        command_center = {
-          components = {
-            command_center.component.DESC,
-            command_center.component.KEYS,
-          },
-          auto_replace_desc_with_cmd = false,
+      integration = {
+        telescope = {
+          enable = true,
+        },
+        lazy = {
+          enable = false,
         },
       },
     })
 
-    telescope.load_extension("command_center")
+    require("commander").add(commands)
   end,
 }

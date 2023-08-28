@@ -76,7 +76,7 @@ return {
             use_cwd = false,
             sorting = "frecency",
           },
-          ["command_center#command_center"] = {
+          ["commander#commander"] = {
             disable = false,
             use_cwd = false,
             sorting = "recent",

@@ -39,7 +39,7 @@ return {
     "tomasky/bookmarks.nvim",
     -- after = "telescope.nvim",
     event = "VeryLazy",
-    enabled = false,
+    -- enabled = false,
     config = function()
       vim.opt.signcolumn = "yes:2"
       require("bookmarks").setup({
