@@ -30,7 +30,8 @@ return {
     end,
   },
   {
-    "eckon/treesitter-current-functions",
+    -- "eckon/treesitter-current-functions",
+    dir = "~/Desktop/xlboy/__open-source__/treesitter-current-functions",
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope.nvim" },
   },
@@ -39,6 +40,22 @@ return {
     event = "VeryLazy",
     config = function()
       vim.keymap.set("n", "gd", require("definition-or-references").definition_or_references, { silent = true })
+    end,
+  },
+  {
+    "marilari88/twoslash-queries.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("lspconfig")["tsserver"].setup({
+        on_attach = function(client, bufnr)
+          require("twoslash-queries").attach(client, bufnr)
+        end,
+      })
+      require("twoslash-queries").setup({
+        multi_line = true, -- to print types in multi line mode
+        is_enabled = false, -- to keep disabled at startup and enable it on request with the TwoslashQueriesEnable
+        highlight = "Type", -- to set up a highlight group for the virtual text
+      })
     end,
   },
 }
