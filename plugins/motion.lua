@@ -1,7 +1,7 @@
 return {
   {
-    -- "xlboy/flash.nvim",
-    dir = "~/Desktop/xlboy/__open-source__/flash.nvim",
+    "xlboy/flash.nvim",
+    -- dir = "~/Desktop/xlboy/__open-source__/flash.nvim",
     event = "VeryLazy",
     ---@type Flash.Config
     opts = {

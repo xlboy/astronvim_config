@@ -30,8 +30,8 @@ return {
     end,
   },
   {
-    -- "eckon/treesitter-current-functions",
-    dir = "~/Desktop/xlboy/__open-source__/treesitter-current-functions",
+    "eckon/treesitter-current-functions",
+    -- dir = "~/Desktop/xlboy/__open-source__/treesitter-current-functions",
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope.nvim" },
   },

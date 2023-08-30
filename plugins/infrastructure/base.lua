@@ -13,8 +13,8 @@ return {
     },
   },
   {
-    -- "xlboy/project.nvim",
-    dir = "~/Desktop/xlboy/__open-source__/project.nvim",
+    "xlboy/project.nvim",
+    -- dir = "~/Desktop/xlboy/__open-source__/project.nvim",
     event = "VeryLazy",
     config = function()
       require("project_nvim").setup({
