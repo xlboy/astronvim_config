@@ -63,7 +63,7 @@ local function move(direction)
 end
 
 local function setup()
-  for _, motion in ipairs({ "h", "j", "k", "l" }) do
+  for _, motion in ipairs({ "h", "j", "k", "l", "w", "b" }) do
     vim.keymap.set({ "n", "v" }, motion, function()
       return move(motion)
     end, { expr = true })

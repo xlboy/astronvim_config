@@ -36,25 +36,67 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope.nvim" },
   },
   {
-    "KostkaBrukowa/definition-or-references.nvim",
+    "niuiic/format.nvim",
     event = "VeryLazy",
+    dependencies = { "niuiic/core.nvim" },
     config = function()
-      vim.keymap.set("n", "gd", require("definition-or-references").definition_or_references, { silent = true })
-    end,
-  },
-  {
-    "marilari88/twoslash-queries.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("lspconfig")["tsserver"].setup({
-        on_attach = function(client, bufnr)
-          require("twoslash-queries").attach(client, bufnr)
+      require("format").setup({
+        allow_update_if_buf_changed = false,
+        -- function to calculate path of the temp file
+        temp_file = function(file_path)
+          local core = require("core")
+          local new_file_path = core.file.dir(file_path)
+            .. "/_"
+            .. core.file.name(file_path)
+            .. "."
+            .. core.file.extension(file_path)
+          return new_file_path
         end,
-      })
-      require("twoslash-queries").setup({
-        multi_line = true, -- to print types in multi line mode
-        is_enabled = false, -- to keep disabled at startup and enable it on request with the TwoslashQueriesEnable
-        highlight = "Type", -- to set up a highlight group for the virtual text
+        hooks = {
+          ---@type fun(code: integer, signal: integer) | nil
+          on_success = function()
+            vim.notify("Formatting Succeed", vim.log.levels.INFO, { title = "Format" })
+          end,
+          ---@type fun(err: string | nil, data: string | nil) | nil
+          on_err = function()
+            vim.notify("Formatting Failed", vim.log.levels.ERROR, { title = "Format" })
+          end,
+          on_timeout = function()
+            vim.notify("Formatting Timeout", vim.log.levels.ERROR, { title = "Format" })
+          end,
+        },
+        filetypes = {
+          -- see format configuration below
+          -- ...
+          javascript = function(file_path)
+            return {
+              -- the first task
+              ---@class format.config
+              ---@field cmd string
+              ---@field args string[]
+              ---@field options {env?: table<string, any>, cwd?: string, uid?: number, gid?: number, verbatim?: boolean, detached?: boolean, hide?: boolean, timeout?: number} | nil
+              ---@field on_success fun(code: integer, signal: integer) | nil
+              ---@field on_err fun(err: string | nil, data: string | nil) | nil
+              ---@field ignore_err (fun(err: string | nil, data: string | nil): boolean) | nil
+              {
+                cmd = "prettier",
+                args = {
+                  -- this plugin copies content of current buffer to a temporary file, and format this file, then write back to the buffer, thus, you need to make sure the formatter can write to the file
+                  "-w",
+                  file_path,
+                },
+                -- some formatters may output to stderr when formatted successfully, use this function to ignore these errors
+                ignore_err = function(err, data)
+                  return err == nil and data == nil
+                end,
+                on_err = function(err, data)
+                  print(vim.inspect(err))
+                  print(vim.inspect(data))
+                end,
+              },
+            }
+          end,
+        },
       })
     end,
   },

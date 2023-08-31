@@ -35,7 +35,7 @@ return {
   lsp = {
     mappings = {
       n = {
-        gd = false,
+        -- gd = false,
         gh = { vim.lsp.buf.hover },
         K = false,
       },

@@ -54,21 +54,6 @@ local commands = {
     cat = CAT.LSP,
   },
   {
-    desc = "TS twoslash-queries enable",
-    cmd = "<CMD>TwoslashQueriesEnable<CR>",
-    cat = CAT.LSP,
-  },
-  {
-    desc = "TS twoslash-queries disable",
-    cmd = "<CMD>TwoslashQueriesDisable<CR>",
-    cat = CAT.LSP,
-  },
-  {
-    desc = "TS twoslash-queries inspect",
-    cmd = "<CMD>TwoslashQueriesInspect<CR>",
-    cat = CAT.LSP,
-  },
-  {
     desc = "TS Refresh Highlight",
     cmd = function()
       vim.cmd([[TSDisable highlight]])
