@@ -9,6 +9,7 @@ return {
     wrap = false, -- sets vim.opt.wrap
     foldcolumn = "0",
     mousescroll = "ver:1,hor:2",
+    laststatus = 0
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader

@@ -37,26 +37,18 @@ return {
   },
   {
     "lewis6991/gitsigns.nvim",
-    opts = {
-      current_line_blame = true,
-    },
+    opts = { current_line_blame = true },
   },
   {
     "s1n7ax/nvim-window-picker",
-    opts = {
-      hint = "floating-big-letter",
-    },
+    opts = { hint = "floating-big-letter" },
   },
   {
     "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-emoji",
-    },
+    dependencies = { "hrsh7th/cmp-emoji" },
     opts = function(_, opts)
       local cmp = require("cmp")
-      opts.completion = {
-        completeopt = "menu,menuone,noinsert",
-      }
+      opts.completion = { completeopt = "menu,menuone,noinsert" }
       opts.sources = cmp.config.sources({
         { name = "nvim_lsp", priority = 1000 },
         { name = "luasnip", priority = 750 },
@@ -68,16 +60,5 @@ return {
     end,
   },
   { "max397574/better-escape.nvim", enabled = false },
-  {
-    "rebelot/heirline.nvim",
-    opts = function(_, opts)
-      opts.winbar = nil
-      -- opts.tabline = {}
-      return opts
-    end,
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    enabled = false,
-  },
+  { "lukas-reineke/indent-blankline.nvim", enabled = false },
 }
