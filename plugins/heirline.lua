@@ -36,6 +36,15 @@ return {
             end
           end
 
+          self.winid = vim.api.nvim_tabpage_list_wins(0)[1]
+          local not_normal_win = status.condition.buffer_matches(
+            { filetype = { "aerial", "dapui_.", "neo%-tree", "NvimTree" } },
+            vim.api.nvim_win_get_buf(self.winid)
+          )
+          if not_normal_win and current_window_index ~= nil then
+            current_window_index = current_window_index - 1
+          end
+
           local bg = current_window_index ~= nil and WINDOWS_COLORS[current_window_index][1]
             or hl.get_attributes("buffer_visible", true).bg
           local fg = current_window_index ~= nil and WINDOWS_COLORS[current_window_index][2] or "#b1d5c8"
