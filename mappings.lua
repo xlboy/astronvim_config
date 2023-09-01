@@ -106,12 +106,22 @@ return {
     ["<leader>c"] = {
       function()
         local bufs = vim.fn.getbufinfo({ buflisted = true })
-        require("astronvim.utils.buffer").close(0)
+        require("astronvim.utils.buffer").close(vim.api.nvim_get_current_buf())
         if require("astronvim.utils").is_available("alpha-nvim") and not bufs[2] then
           require("alpha").start(true)
         end
       end,
       desc = "Close buffer",
+    },
+    ["<leader>ca"] = {
+      function()
+        local bufs = vim.fn.getbufinfo({ buflisted = true })
+        for _, buf in pairs(bufs) do
+          require("astronvim.utils.buffer").close(buf.bufnr)
+        end
+        require("alpha").start(true)
+      end,
+      desc = "Close All buffer",
     },
     ["}"] = {
       function()
