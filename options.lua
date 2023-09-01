@@ -5,7 +5,7 @@ return {
     relativenumber = false, -- sets vim.opt.relativenumber
     number = false, -- sets vim.opt.number
     spell = false, -- sets vim.opt.spell
-    signcolumn = "yes", -- sets vim.opt.signcolumn to auto
+    signcolumn = "no", -- sets vim.opt.signcolumn to auto
     wrap = false, -- sets vim.opt.wrap
     foldcolumn = "0",
     mousescroll = "ver:1,hor:2",

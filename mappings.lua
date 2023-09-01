@@ -1,5 +1,6 @@
-local tBuiltin = require("telescope.builtin")
-local tExtensions = require("telescope").extensions
+local t_builtin = require("telescope.builtin")
+local t_extensions = require("telescope").extensions
+local u_buffer = require("user.utils.buffer")
 
 return {
   n = {
@@ -12,7 +13,7 @@ return {
     ["<leader>fml"] = { "<cmd>CellularAutomaton make_it_rain<CR>" },
     ["<leader>fmk"] = { "<cmd>CellularAutomaton game_of_life<CR>" },
     ["<leader>all"] = { "ggVG" },
-    ["<leader>/"] = { tBuiltin.live_grep },
+    ["<leader>/"] = { t_builtin.live_grep },
     ["<leader>,"] = {
       function()
         local entry_display = require("telescope.pickers.entry_display")
@@ -68,7 +69,7 @@ return {
     ["<leader>fn"] = { "<CMD>GetCurrentFunctions<CR>" },
     ["<leader>fp"] = {
       function()
-        tExtensions.projects.projects({
+        t_extensions.projects.projects({
           layout_config = {
             width = 110,
             height = 25,
@@ -84,7 +85,7 @@ return {
     ["<S-d>"] = { "20j" },
     ["<leader><leader>"] = {
       function()
-        tExtensions.smart_open.smart_open({
+        t_extensions.smart_open.smart_open({
           previewer = false,
           layout_config = {
             width = 110,
@@ -103,7 +104,8 @@ return {
       end,
       desc = "Pick to close",
     },
-    ["<leader>c"] = {
+    ["<leader>c"] = { "" },
+    ["<leader>cc"] = {
       function()
         local bufs = vim.fn.getbufinfo({ buflisted = true })
         require("astronvim.utils.buffer").close(vim.api.nvim_get_current_buf())
@@ -125,12 +127,29 @@ return {
     },
     ["}"] = {
       function()
-        require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
+        local next_buf_pos = u_buffer.get_next_buf_position()
+        if next_buf_pos ~= nil then
+          local jump_step_number = 1
+          local next_buf = vim.api.nvim_list_bufs()[next_buf_pos]
+          if u_buffer.is_open(next_buf) then
+            jump_step_number = 2
+          end
+          require("astronvim.utils.buffer").nav(jump_step_number)
+        end
       end,
     },
     ["{"] = {
       function()
-        require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
+        local prev_buf_pos = u_buffer.get_prev_buf_position()
+        if prev_buf_pos ~= nil then
+          local jump_step_number = -1
+          local prev_buf = vim.api.nvim_list_bufs()[prev_buf_pos]
+          if u_buffer.is_open(prev_buf) then
+            jump_step_number = -2
+          end
+
+          require("astronvim.utils.buffer").nav(jump_step_number)
+        end
       end,
     },
   },

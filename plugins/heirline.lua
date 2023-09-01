@@ -1,5 +1,5 @@
 local WINDOWS_COLORS = {
-  { "#3b3b98", "#dff9fb" },
+  { "#9e36ff", "#dff9fb" },
   { "#17c0eb", "#dff9fb" },
 }
 
