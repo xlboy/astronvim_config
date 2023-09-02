@@ -10,9 +10,8 @@ return {
           enabled = false,
         },
         char = {
-          -- enabled = false,
+          enabled = false,
           multi_line = false,
-          max_length = 10,
         },
       },
     },
@@ -24,7 +23,7 @@ return {
           require("flash").jump({
             search = {
               multi_window = false,
-              mode = "fuzzy",
+              -- mode = "fuzzy",
             },
           })
         end,
