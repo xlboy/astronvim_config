@@ -51,11 +51,6 @@ local commands = {
     cat = CAT.FS,
   },
   {
-    desc = "Ternary switch",
-    cmd = "<CMD>Switch<CR>",
-    cat = CAT.EDIT,
-  },
-  {
     desc = "Merge 2 lines",
     cmd = "<CMD>join<CR>",
     cat = CAT.EDIT,
