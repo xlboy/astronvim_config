@@ -5,6 +5,9 @@ return {
     event = "VeryLazy",
     ---@type Flash.Config
     opts = {
+      label = {
+        uppercase = false,
+      },
       modes = {
         search = {
           enabled = false,

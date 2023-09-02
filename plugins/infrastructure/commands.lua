@@ -44,6 +44,18 @@ local commands = {
     cat = CAT.FS,
   },
   {
+    desc = "Open the specified file (relative to cwd)",
+    cmd = function()
+      require("user.scripts.open-file").open_file()
+    end,
+    cat = CAT.FS,
+  },
+  {
+    desc = "Ternary switch",
+    cmd = "<CMD>Switch<CR>",
+    cat = CAT.EDIT,
+  },
+  {
     desc = "Merge 2 lines",
     cmd = "<CMD>join<CR>",
     cat = CAT.EDIT,
