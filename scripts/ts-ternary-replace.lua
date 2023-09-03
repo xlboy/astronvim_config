@@ -22,10 +22,11 @@ end
 
 function M.replace()
   local current_buf = vim.api.nvim_get_current_buf()
-  local is_typescript_file = vim.api.nvim_buf_get_option(current_buf, "filetype") == "typescript"
 
-  if not is_typescript_file then
-    return vim.notify("当前文件非 typescript 文件", vim.log.levels.ERROR)
+  local file_type = vim.api.nvim_buf_get_option(current_buf, "filetype") ---@type string
+  local can_replace = string.match(file_type, "typescript") or string.match(file_type, "javascript")
+  if not can_replace then
+    return vim.notify("当前文件非 ts/js 类文件", vim.log.levels.ERROR)
   end
 
   local node_tree = vim.treesitter.get_parser(current_buf)
