@@ -61,6 +61,13 @@ local commands = {
     cat = CAT.LSP,
   },
   {
+    desc = "TS - Replace ternary expression",
+    cmd = function()
+      require("user.scripts.ts-ternary-replace").replace()
+    end,
+    cat = CAT.LSP,
+  },
+  {
     desc = "TS Refresh Highlight",
     cmd = function()
       vim.cmd([[TSDisable highlight]])
@@ -91,7 +98,7 @@ return {
     "nvim-telescope/telescope.nvim",
   },
   keys = {
-    { "<leader>pp", "<CMD>Telescope commander<CR>", mode = "n" },
+    { "<leader>pp", "<CMD>Telescope commander<CR>", mode = { "n", "v" } },
   },
   config = function()
     require("commander").setup({
