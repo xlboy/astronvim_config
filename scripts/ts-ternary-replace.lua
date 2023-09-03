@@ -34,8 +34,8 @@ function M.replace()
   end
 
   local ternary_node = _find_ternary_node(current_buf)
-  if not ternary_node or ternary_node:type() ~= "ternary_expression" then
-    return vim.notify("当前选中的非“三元表达式”", vim.log.levels.WARN)
+  if not ternary_node then
+    return vim.notify("未在当前光标处找到“三元表达式”", vim.log.levels.WARN)
   end
 
   local cond_node = nil ---@type TSNode | nil
