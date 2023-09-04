@@ -43,11 +43,4 @@ return {
       },
     },
   },
-  {
-    "AndrewRadev/switch.vim",
-    event = "VeryLazy",
-    config = function()
-      vim.g.switch_mapping = ""
-    end,
-  },
 }
