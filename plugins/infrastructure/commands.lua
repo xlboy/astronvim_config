@@ -61,9 +61,9 @@ local commands = {
     cat = CAT.LSP,
   },
   {
-    desc = "TS - Replace ternary expression",
+    desc = "TS/JS Swap ternary",
     cmd = function()
-      require("user.scripts.ts-ternary-replace").replace()
+      require("user.scripts.swap-ternary").replace()
     end,
     cat = CAT.LSP,
   },
