@@ -158,6 +158,7 @@ return {
   i = {
     ["kj"] = { "<esc>" },
     ["jk"] = { "<esc>" },
+    ["<Tab>"] = { "<Tab>" },
   },
   v = {
     ["<S-h>"] = { "^" },
@@ -170,11 +171,6 @@ return {
     ["'c"] = { '"0c' },
     ["<S-w>"] = { "3w" },
     ["<S-b>"] = { "3b" },
-    ["<leader>lj"] = {
-      function()
-        require("user.scripts.ts-ternary-replace").replace()
-      end,
-    },
   },
   t = {},
 }
