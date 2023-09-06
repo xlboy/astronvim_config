@@ -13,6 +13,7 @@ return {
   { import = "astrocommunity.pack.html-css" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.lua" },
+  { import = "astrocommunity.pack.python" },
 
   { import = "astrocommunity.utility.telescope-fzy-native-nvim" },
   { import = "astrocommunity.utility.telescope-live-grep-args-nvim" },
