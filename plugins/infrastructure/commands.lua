@@ -63,7 +63,7 @@ local commands = {
   {
     desc = "TS/JS Swap ternary",
     cmd = function()
-      require("user.scripts.swap-ternary").replace()
+      require("swap-ternary").start()
     end,
     cat = CAT.LSP,
   },

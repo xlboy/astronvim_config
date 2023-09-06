@@ -158,7 +158,6 @@ return {
   i = {
     ["kj"] = { "<esc>" },
     ["jk"] = { "<esc>" },
-    ["<Tab>"] = { "  " },
     ["<C-;>"] = {
       function()
         local cmp = require("cmp")

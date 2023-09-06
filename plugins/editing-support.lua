@@ -45,7 +45,6 @@ return {
   },
   {
     "zbirenbaum/copilot.lua",
-    enabled = false,
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
@@ -66,5 +65,8 @@ return {
       })
     end,
   },
-  {},
+  {
+    "xlboy/swap-ternary.nvim",
+    event = "VeryLazy",
+  },
 }
