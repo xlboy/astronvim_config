@@ -45,6 +45,7 @@ return {
   },
   {
     "zbirenbaum/copilot.lua",
+    enabled = false,
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
@@ -57,8 +58,8 @@ return {
             accept = "<C-c>",
             accept_word = false,
             accept_line = false,
-            next = "<M-]>",
-            prev = "<M-[>",
+            next = "<C-n>",
+            prev = "<C-p>",
             dismiss = "<C-]>",
           },
         },

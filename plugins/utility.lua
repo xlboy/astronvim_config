@@ -19,13 +19,13 @@ return {
       vim.keymap.set("n", "<leader>vsc", require("export-to-vscode").launch, {})
     end,
   },
-  {
-    "mg979/vim-visual-multi",
-    event = "VeryLazy",
-    init = function()
-      vim.g.VM_mouse_mappings = 1
-    end,
-  },
+  -- {
+  --   "mg979/vim-visual-multi",
+  --   event = "VeryLazy",
+  --   init = function()
+  --     vim.g.VM_mouse_mappings = 1
+  --   end,
+  -- },
   {
     "wakatime/vim-wakatime",
     event = "VeryLazy",

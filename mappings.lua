@@ -158,7 +158,19 @@ return {
   i = {
     ["kj"] = { "<esc>" },
     ["jk"] = { "<esc>" },
-    ["<Tab>"] = { "<Tab>" },
+    ["<Tab>"] = { "  " },
+    ["<C-;>"] = {
+      function()
+        local cmp = require("cmp")
+        cmp.close()
+      end,
+    },
+    ["<C-i>"] = {
+      function()
+        local cmp = require("cmp")
+        cmp.complete()
+      end,
+    },
   },
   v = {
     ["<S-h>"] = { "^" },
