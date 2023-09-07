@@ -4,7 +4,7 @@ local get_move_step = (function()
   local prev_direction
   local prev_time = 0
   local move_count = 0
-  local ACCELERATION_TABLE_VERTICAL = { 6, 12, 18, 24, 30, 36, 40 }
+  local ACCELERATION_TABLE_VERTICAL = { 5, 10, 15, 20, 30, 40, 50 }
   local ACCELERATION_TABLE_HORIZONTAL = { 5, 10, 15, 20 }
 
   local ACCELERATION_LIMIT = 50

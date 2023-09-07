@@ -4,7 +4,7 @@ vim.api.nvim_create_autocmd({ "TextChangedI", "TextChangedP" }, {
     local cursor = vim.api.nvim_win_get_cursor(0)[2]
 
     local current = string.sub(line, cursor, cursor + 1)
-    if current == "." or current == "," or current == " " then
+    if current == "," or current == " " then
       require("cmp").close()
     end
 

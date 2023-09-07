@@ -9,6 +9,7 @@ return {
     ["'c"] = { '"0c' },
     ["<S-w>"] = { "3w" },
     ["<S-b>"] = { "3b" },
+    ["<leader>jo"] = { "<CMD>join<CR>" },
     ["<leader>tt"] = { "<cmd>:TodoTelescope<CR>" },
     ["<leader>fml"] = { "<cmd>CellularAutomaton make_it_rain<CR>" },
     ["<leader>fmk"] = { "<cmd>CellularAutomaton game_of_life<CR>" },

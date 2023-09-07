@@ -51,17 +51,12 @@ local commands = {
     cat = CAT.FS,
   },
   {
-    desc = "Merge 2 lines",
-    cmd = "<CMD>join<CR>",
-    cat = CAT.EDIT,
-  },
-  {
     desc = "Restart lsp server",
     cmd = "<CMD>LspRestart<CR>",
     cat = CAT.LSP,
   },
   {
-    desc = "TS/JS Swap ternary",
+    desc = "Swap ternary",
     cmd = function()
       require("swap-ternary").start()
     end,
@@ -72,6 +67,15 @@ local commands = {
     cmd = function()
       vim.cmd([[TSDisable highlight]])
       vim.cmd([[TSEnable highlight]])
+    end,
+    cat = CAT.LSP,
+  },
+  {
+    desc = "TS Organize Imports",
+    cmd = function()
+      local params =
+        { command = "_typescript.organizeImports", arguments = { vim.api.nvim_buf_get_name(0) }, title = "" }
+      vim.lsp.buf.execute_command(params)
     end,
     cat = CAT.LSP,
   },
