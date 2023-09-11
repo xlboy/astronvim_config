@@ -35,4 +35,9 @@ return {
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope.nvim" },
   },
+  {
+    dir = "~/Desktop/xlboy-project/function-picker.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope.nvim" },
+  },
 }
