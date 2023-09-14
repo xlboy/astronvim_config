@@ -12,11 +12,13 @@ return {
           require("telescope").load_extension("fzf")
         end,
       },
+      "debugloop/telescope-undo.nvim",
     },
     config = function(plugin, opts)
       require("plugins.configs.telescope")(plugin, opts)
       local telescope = require("telescope")
       telescope.load_extension("media_files")
+      telescope.load_extension("undo")
     end,
     opts = function(_, opts)
       local actions = require("telescope.actions")
