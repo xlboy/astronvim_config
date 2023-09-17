@@ -41,4 +41,38 @@ return {
       require("peepsight").enable()
     end,
   },
+  {
+    "Pocco81/true-zen.nvim",
+    keys = { { "<leader>tzn", ":TZNarrow<CR>", mode = { "v" } } },
+    config = function()
+      require("true-zen").setup({})
+    end,
+  },
+  {
+    dir = "~/Desktop/xlboy-project/function-picker.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope.nvim" },
+    keys = {
+      {
+        "<leader>fns",
+        function()
+          require("function-picker").show({
+            deep = {
+              mode = "flat",
+              tree_contour_opts = { indent = 2 },
+              flat_opts = { space_character = " 🌀 " },
+            },
+          })
+        end,
+        mode = { "n" },
+      },
+    },
+  },
+  {
+    "AckslD/nvim-FeMaco.lua",
+    event = "VeryLazy",
+    config = function()
+      require("femaco").setup()
+    end,
+  },
 }

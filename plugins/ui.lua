@@ -31,4 +31,20 @@ return {
     end,
   },
   { "itchyny/vim-cursorword", event = "VeryLazy" },
+  {
+    "kevinhwang91/nvim-hlslens",
+    event = "VeryLazy",
+    config = function()
+      require("hlslens").setup()
+    end,
+  },
+  {
+    "utilyre/sentiment.nvim",
+    version = "*",
+    event = "VeryLazy", -- keep for lazy loading
+    opts = {},
+    init = function()
+      vim.g.loaded_matchparen = 1
+    end,
+  },
 }

@@ -11,6 +11,13 @@ return {
     local cmp = require("cmp")
     local snip_status_ok, luasnip = pcall(require, "luasnip")
     local lspkind_status_ok, lspkind = pcall(require, "lspkind")
+    lspkind.init({
+      symbol_map = {
+        Copilot = "",
+      },
+    })
+
+    vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
     local utils = require("astronvim.utils")
     if not snip_status_ok then
       return
@@ -68,8 +75,8 @@ return {
       sources = cmp.config.sources({
         { name = "nvim_lsp", priority = 1000 },
         -- { name = "luasnip", priority = 750 },
-        -- { name = "buffer", priority = 500 },
-        { name = "path", priority = 250 },
+        { name = "buffer", priority = 500 },
+        -- { name = "path", priority = 250 },
       }),
     }
   end,

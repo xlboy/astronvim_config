@@ -45,7 +45,7 @@ return {
   },
   {
     "zbirenbaum/copilot.lua",
-    enabled = false,
+    -- enabled = false,
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
@@ -158,48 +158,6 @@ return {
         autoswap = true,
         debug = nil,
         hl_grey_priority = "1000",
-      })
-    end,
-  },
-  {
-    -- TODO： 回头回忆一下使用记录，不行则咔嚓掉
-    "abecodes/tabout.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("tabout").setup({
-        tabkey = "", -- key to trigger tabout, set to an empty string to disable
-        backwards_tabkey = "", -- key to trigger backwards tabout, set to an empty string to disable
-        act_as_tab = false, -- shift content if tab out is not possible
-        act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
-        default_tab = "", -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
-        default_shift_tab = "", -- reverse shift default action,
-        -- enable_backwards = true, -- well ...
-        completion = false, -- if the tabkey is used in a completion pum
-        tabouts = {
-          { open = "'", close = "'" },
-          { open = '"', close = '"' },
-          { open = "`", close = "`" },
-          { open = "(", close = ")" },
-          { open = "[", close = "]" },
-          { open = "{", close = "}" },
-          { open = "<", close = ">" },
-        },
-        ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
-        exclude = {}, -- tabout will ignore these filetypes
-      })
-      vim.api.nvim_set_keymap("i", "<C-l>", "<Plug>(Tabout)", { silent = true })
-      vim.api.nvim_set_keymap("i", "<C-h>", "<Plug>(TaboutBack)", { silent = true })
-    end,
-  },
-  {
-    "andymass/vim-matchup",
-    event = "VeryLazy",
-    config = function()
-      vim.g.matchup_matchparen_offscreen = { method = "popup" }
-      require("nvim-treesitter.configs").setup({
-        matchup = {
-          enable = true, -- mandatory, false will disable the whole extension
-        },
       })
     end,
   },
