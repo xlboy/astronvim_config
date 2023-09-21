@@ -28,6 +28,7 @@ return {
     config = function()
       require("peepsight").setup({
         -- Lua
+        "function_definition",
         "local_function_definition_statement",
         "function_definition_statement",
 
@@ -49,7 +50,7 @@ return {
     end,
   },
   {
-    dir = "~/Desktop/xlboy-project/function-picker.nvim",
+    dir = "~/Desktop/xlboy/function-picker.nvim",
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope.nvim" },
     keys = {
