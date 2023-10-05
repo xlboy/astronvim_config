@@ -17,6 +17,7 @@ return {
         { desc = "Telescope Quick Change" }
       )
       vim.api.nvim_set_keymap("n", "gai", "<cmd>TextCaseOpenTelescopeLSPChange<CR>", { desc = "Telescope LSP Change" })
+      vim.api.nvim_set_keymap("n", "gam", "<cmd>TextCaseOpenTelescopeQuickOrLSP<CR>")
     end,
   },
   { "wellle/targets.vim", event = "VeryLazy" },
@@ -45,7 +46,7 @@ return {
   },
   {
     "zbirenbaum/copilot.lua",
-    -- enabled = false,
+    enabled = false,
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
