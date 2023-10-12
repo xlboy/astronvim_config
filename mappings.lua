@@ -18,64 +18,28 @@ return {
     ["<leader>/"] = { t_builtin.live_grep },
     ["<leader>,"] = {
       function()
-        local entry_display = require("telescope.pickers.entry_display")
-
-        local displayer = entry_display.create({
-          separator = " ",
-          items = {
-            { width = 30 },
-            { remaining = true },
-          },
-        })
-        local function make_display(entry)
-          local dir_path = entry.is_root_file and "" or entry.dir_path
-          return displayer({ entry.name, { dir_path, "Comment" } })
-        end
         require("telescope.builtin").buffers({
           previewer = false,
-          layout_config = {
-            width = 70,
-            height = 25,
-          },
+          layout_config = { width = 70, height = 25 },
           path_display = function(opts, path)
             local tail = require("telescope.utils").path_tail(path)
             return string.format("%s (%s)", tail, vim.fn.fnamemodify(path, ":h")), { { { 1, #tail }, "Constant" } }
           end,
-          -- entry_maker = function(entry)
-          --   local file_name = vim.fn.fnamemodify(entry.info.name, ":t")
-          --   local dir_path = vim.fn.fnamemodify(entry.info.name, ":h")
-          --   local current_cwd = vim.fn.getcwd()
-          --   local relative_dir_path = vim.fn.fnamemodify(dir_path, ":~:." .. current_cwd .. ":.")
-          --   local is_root_file = dir_path == current_cwd
-          --   local ordinal = file_name .. " " .. relative_dir_path
-          --   if is_root_file then
-          --     ordinal = file_name
-          --   end
-          --   print(dir_path .. "--" .. current_cwd)
-          --   print(is_root_file)
-          --   print(ordinal)
-          --
-          --   return {
-          --     display = make_display,
-          --     name = file_name,
-          --     dir_path = relative_dir_path,
-          --     is_root_file = is_root_file,
-          --     value = entry,
-          --     ordinal = ordinal,
-          --   }
-          -- end,
         })
       end,
       desc = "Find buffers",
     },
-    ["<leader>fn"] = { "<CMD>GetCurrentFunctions<CR>" },
-    ["<leader>fp"] = {
+    ["<leader>fpr"] = {
       function()
-        t_extensions.projects.projects({
-          layout_config = {
-            width = 110,
-            height = 25,
-          },
+        t_extensions["neovim-project"].history({
+          layout_config = { width = 110, height = 25 },
+        })
+      end,
+    },
+    ["<leader>fpa"] = {
+      function()
+        t_extensions["neovim-project"].discover({
+          layout_config = { width = 110, height = 25 },
         })
       end,
     },
@@ -89,10 +53,7 @@ return {
       function()
         t_extensions.smart_open.smart_open({
           previewer = false,
-          layout_config = {
-            width = 110,
-            height = 25,
-          },
+          layout_config = { width = 110, height = 25 },
         })
       end,
     },
