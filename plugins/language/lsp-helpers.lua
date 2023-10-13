@@ -29,4 +29,38 @@ return {
       require("lsp-file-operations").setup()
     end,
   },
+  {
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    keys = {
+      {
+        "<leader>cf",
+        function()
+          require("conform").format({ async = true, lsp_fallback = true })
+        end,
+        mode = "n",
+        desc = "Format buffer",
+      },
+    },
+    opts = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+        javascript = { { "prettier" } },
+        typescript = { { "prettier" } },
+      },
+      format_on_save = false,
+    },
+    init = function()
+      -- If you want the formatexpr, here is the place to set it
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
+
+    -- This function is optional, but if you want to customize formatters do it here
+    config = function(_, opts)
+      local util = require("conform.util")
+      util.add_formatter_args(require("conform.formatters.shfmt"), { "-i", "2" })
+      require("conform").setup(opts)
+    end,
+  },
 }

@@ -35,7 +35,6 @@ return {
   lsp = {
     mappings = {
       n = {
-        -- gd = false,
         gh = { vim.lsp.buf.hover },
         K = false,
       },
@@ -43,19 +42,21 @@ return {
     formatting = {
       format_on_save = false,
       disabled = { -- disable formatting capabilities for the listed language servers
+        "lua_ls",
+        "null-ls"
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
       },
       timeout_ms = 1000, -- default format timeout
     },
-    config = {
-      emmet_ls = function(opts)
-        opts.filetypes = { "html", "css", "javascript", "jsx", "typescript", "tsx" }
-        opts.settings = {
-          css_filetypes = { "css", "javascript", "jsx", "typescript", "tsx" },
-        }
-        return opts
-      end,
-    },
+    -- config = {
+    --   emmet_ls = function(opts)
+    --     opts.filetypes = { "html", "css", "javascript", "jsx", "typescript", "tsx" }
+    --     opts.settings = {
+    --       css_filetypes = { "css", "javascript", "jsx", "typescript", "tsx" },
+    --     }
+    --     return opts
+    --   end,
+    -- },
   },
 
   -- Configure require("lazy").setup() options

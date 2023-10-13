@@ -14,25 +14,22 @@ return {
   },
   {
     "coffebar/neovim-project",
-    opts = {
-      projects = {
-        "~/.config/nvim/lua/user",
-        "~/Desktop/lilith/*",
-        "~/Desktop/xlboy/*",
-        "~/Desktop/xlboy/__open-source__/*",
-      },
-    },
     init = function()
-      -- enable saving the state of plugins in the session
-      vim.opt.sessionoptions:append("globals") -- save global variables that start with an uppercase letter and contain at least one lowercase letter.
+      vim.opt.sessionoptions:append("globals")
       require("telescope").load_extension("neovim-project")
+      require("neovim-project").setup({
+        projects = {
+          "~/.config/nvim/lua/user",
+          "~/Desktop/lilith/*",
+          "~/Desktop/xlboy/*",
+          "~/Desktop/xlboy/__open-source__/*",
+        },
+        datapath = vim.fn.stdpath("data"),
+      })
     end,
     dependencies = {
       { "nvim-lua/plenary.nvim" },
-      { "nvim-telescope/telescope.nvim", tag = "0.1.4" },
       { "Shatur/neovim-session-manager" },
     },
-    lazy = false,
-    priority = 100,
   },
 }
