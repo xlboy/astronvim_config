@@ -76,9 +76,4 @@ return {
       require("femaco").setup()
     end,
   },
-  {
-    "Wansmer/symbol-usage.nvim",
-    enabled = false,
-    event = "BufReadPre",
-  },
 }

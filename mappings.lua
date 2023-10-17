@@ -90,31 +90,12 @@ return {
     },
     ["}"] = {
       function()
-        local next_buf_pos = u_buffer.get_next_buf_position()
-        if next_buf_pos ~= nil then
-          local jump_step_number = 1
-          local bufs = vim.fn.getbufinfo({ buflisted = true })
-          local next_buf = bufs[next_buf_pos].bufnr
-          if u_buffer.is_open(next_buf) then
-            jump_step_number = 2
-          end
-          require("astronvim.utils.buffer").nav(jump_step_number)
-        end
+        require("astronvim.utils.buffer").nav(1)
       end,
     },
     ["{"] = {
       function()
-        local prev_buf_pos = u_buffer.get_prev_buf_position()
-        if prev_buf_pos ~= nil then
-          local jump_step_number = -1
-          local bufs = vim.fn.getbufinfo({ buflisted = true })
-          local prev_buf = bufs[prev_buf_pos].bufnr
-          if u_buffer.is_open(prev_buf) then
-            jump_step_number = -2
-          end
-
-          require("astronvim.utils.buffer").nav(jump_step_number)
-        end
+        require("astronvim.utils.buffer").nav(-1)
       end,
     },
   },
