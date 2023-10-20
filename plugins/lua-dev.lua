@@ -21,9 +21,6 @@ return {
       { "<leader>sco", "<cmd>ScratchOpen<cr>", desc = "sc - open scratch" },
       { "<leader>scO", "<cmd>ScratchOpenFzf<cr>", desc = "sc - open scratch (fzf)" },
     },
-    opts = {
-      filetypes = { "ts" },
-    },
   },
   {
     -- 先装 rust，再去到对应的目录下 install

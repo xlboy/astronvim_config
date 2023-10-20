@@ -19,6 +19,7 @@ return {
       require("telescope").load_extension("neovim-project")
       require("neovim-project").setup({
         projects = {
+          "~/.config/nvim",
           "~/.config/nvim/lua/user",
           "~/Desktop/lilith/*",
           "~/Desktop/xlboy/*",
