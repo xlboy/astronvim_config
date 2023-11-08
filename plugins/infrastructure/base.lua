@@ -1,16 +1,11 @@
 return {
   {
-    "danielfalk/smart-open.nvim",
-    branch = "0.2.x",
+    "xlboy/telescope-recent-files",
     event = "VeryLazy",
     config = function()
-      require("telescope").load_extension("smart_open")
+      require("telescope").load_extension("recent_files")
     end,
-    dependencies = {
-      "kkharji/sqlite.lua",
-      "nvim-telescope/telescope.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    },
+    dependencies = { "kkharji/sqlite.lua" },
   },
   {
     "coffebar/neovim-project",
@@ -22,6 +17,7 @@ return {
           "~/.config/nvim",
           "~/.config/nvim/lua/user",
           "~/Desktop/lilith/*",
+          "~/Desktop/lilith/__temp__/*",
           "~/Desktop/xlboy/*",
           "~/Desktop/xlboy/__open-source__/*",
         },

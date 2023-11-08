@@ -4,6 +4,7 @@ local u_buffer = require("user.utils.buffer")
 
 return {
   n = {
+    ["ge"] = { function() end },
     ["ZZ"] = { "" },
     ["'d"] = { '"0d' },
     ["'c"] = { '"0c' },
@@ -51,7 +52,8 @@ return {
     ["<S-d>"] = { "20j" },
     ["<leader><leader>"] = {
       function()
-        t_extensions.smart_open.smart_open({
+        t_extensions.recent_files.pick({
+          only_cwd = true,
           previewer = false,
           layout_config = { width = 110, height = 25 },
         })
