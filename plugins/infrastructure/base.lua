@@ -19,6 +19,7 @@ return {
           "~/Desktop/lilith/*",
           "~/Desktop/lilith/__temp__/*",
           "~/Desktop/xlboy/*",
+          "~/Desktop/xlboy-project/*",
           "~/Desktop/xlboy/__open-source__/*",
         },
         datapath = vim.fn.stdpath("data"),
@@ -37,5 +38,27 @@ return {
       vim.g.mkdp_filetypes = { "markdown" }
     end,
     ft = { "markdown" },
+  },
+  {
+    "Marskey/telescope-sg",
+    event = "VeryLazy",
+    config = function()
+      require("telescope").load_extension("ast_grep")
+      require("telescope").setup({
+        extensions = {
+          ast_grep = {
+            command = {
+              "sg",
+              "--json=stream",
+            }, -- must have --json=stream
+            grep_open_files = false, -- search in opened files
+            lang = nil, -- string value, specify language for ast-grep `nil` for default
+          },
+        },
+      })
+    end,
+    keys = {
+      { "<leader>fsg", "<CMD>Telescope ast_grep<CR>", desc = "Telescope ast_grep" },
+    },
   },
 }
