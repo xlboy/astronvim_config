@@ -63,4 +63,11 @@ return {
       require("conform").setup(opts)
     end,
   },
+  {
+    "dmmulroy/tsc.nvim",
+    config = function()
+      -- TODO: 待定制化完善配置
+      require("tsc").setup()
+    end,
+  },
 }
