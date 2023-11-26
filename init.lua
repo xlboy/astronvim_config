@@ -1,8 +1,9 @@
-require("user.scripts.backup-file")
-require("user.scripts.init-neovide")
+-- require("user.scripts.backup-file")
+-- require("user.scripts.init-neovide")
 require("user.scripts.fast-cursor-move")
-require("user.scripts.init-kitty-title")
-require("user.scripts.rewrite-cmp-action")
+require("user.scripts.init-vsc")
+-- require("user.scripts.init-kitty-title")
+-- require("user.scripts.rewrite-cmp-action")
 
 return {
   -- Configure AstroNvim updates
